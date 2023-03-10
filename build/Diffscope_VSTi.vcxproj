@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{EDF648DE-69E6-317D-8507-909A97D129F5}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>Diffscope_VSTi</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\VST3\Debug\Diffscope_VSTi.vst3\Contents\x86_64-win\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Diffscope_VSTi.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Diffscope_VSTi</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.vst3</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <LocalDebuggerCommand Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProgramW6432)/Steinberg/VST3PluginTestHost/VST3PluginTestHost.exe</LocalDebuggerCommand>
+    <LocalDebuggerCommandArguments Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">--pluginfolder "$(OutDir)/"</LocalDebuggerCommandArguments>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\VST3\Release\Diffscope_VSTi.vst3\Contents\x86_64-win\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Diffscope_VSTi.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Diffscope_VSTi</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.vst3</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <LocalDebuggerCommand Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProgramW6432)/Steinberg/VST3PluginTestHost/VST3PluginTestHost.exe</LocalDebuggerCommand>
+    <LocalDebuggerCommandArguments Condition="'$(Configuration)|$(Platform)'=='Release|x64'">--pluginfolder "$(OutDir)/"</LocalDebuggerCommandArguments>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build;C:\Users\Crs_1\VST_SDK\vst3sdk\vstgui4;C:\Users\Crs_1\VST_SDK\vst3sdk\base\..;C:\Users\Crs_1\VST_SDK\vst3sdk\public.sdk\..;C:\Users\Crs_1\VST_SDK\vst3sdk\pluginterfaces\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>6031;6308;6330;6385;6386;28125;28251;4221</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;SMTG_RENAME_ASSERT=1;DEVELOPMENT=1;_UNICODE;VSTGUI_LIVE_EDITING;VSTGUI_ENABLE_DEPRECATED_METHODS=1;SMTG_MODULE_IS_BUNDLE=1;CMAKE_INTDIR="Debug";Diffscope_VSTi_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;SMTG_RENAME_ASSERT=1;DEVELOPMENT=1;_UNICODE;VSTGUI_LIVE_EDITING;VSTGUI_ENABLE_DEPRECATED_METHODS=1;SMTG_MODULE_IS_BUNDLE=1;CMAKE_INTDIR=\"Debug\";Diffscope_VSTi_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build;C:\Users\Crs_1\VST_SDK\vst3sdk\vstgui4;C:\Users\Crs_1\VST_SDK\vst3sdk\base\..;C:\Users\Crs_1\VST_SDK\vst3sdk\public.sdk\..;C:\Users\Crs_1\VST_SDK\vst3sdk\pluginterfaces\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build;C:\Users\Crs_1\VST_SDK\vst3sdk\vstgui4;C:\Users\Crs_1\VST_SDK\vst3sdk\base\..;C:\Users\Crs_1\VST_SDK\vst3sdk\public.sdk\..;C:\Users\Crs_1\VST_SDK\vst3sdk\pluginterfaces\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message>[SMTG] Copy PlugIn.ico and desktop.ini and change their attributes.			</Message>
+      <Command>setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/../templates/VST_Logo_Steinberg.ico "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Debug/Diffscope_VSTi.vst3/PlugIn.ico"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E copy C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/../templates/desktop.ini.in "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Debug/Diffscope_VSTi.vst3/desktop.ini"
+if %errorlevel% neq 0 goto :cmEnd
+attrib +s "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Debug/Diffscope_VSTi.vst3/desktop.ini"
+if %errorlevel% neq 0 goto :cmEnd
+attrib +s "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Debug/Diffscope_VSTi.vst3/PlugIn.ico"
+if %errorlevel% neq 0 goto :cmEnd
+attrib +s "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Debug/Diffscope_VSTi.vst3"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+cd "C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\bin"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\bin\Debug\moduleinfotool.exe" -create -version 1.0.0.0 -path "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Debug/Diffscope_VSTi.vst3" -output "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Debug/Diffscope_VSTi.vst3/Contents/moduleinfo.json"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+cd "C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\bin"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo [SMTG] Validator started...
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\bin\Debug\validator.exe" "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Debug/Diffscope_VSTi.vst3/Contents/x86_64-win/Diffscope_VSTi.vst3"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo [SMTG] Validator finished.
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo [SMTG] Delete previous link...
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -rf C:/Users/Crs_1/AppData/Local/Programs/Common/VST3/Diffscope_VSTi.vst3
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo [SMTG] Creation of the new link...
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E create_symlink "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Debug/Diffscope_VSTi.vst3"  C:/Users/Crs_1/AppData/Local/Programs/Common/VST3/Diffscope_VSTi.vst3
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo [SMTG] Finished.
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>lib\Debug\vstgui_support.lib;lib\Debug\sdk.lib;lib\Debug\vstgui_uidescription.lib;lib\Debug\vstgui.lib;lib\Debug\sdk_common.lib;lib\Debug\base.lib;lib\Debug\pluginterfaces.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/lib/Debug/Diffscope_VSTi.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/WIN_PDB64/Debug/Diffscope_VSTi.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build;C:\Users\Crs_1\VST_SDK\vst3sdk\vstgui4;C:\Users\Crs_1\VST_SDK\vst3sdk\base\..;C:\Users\Crs_1\VST_SDK\vst3sdk\public.sdk\..;C:\Users\Crs_1\VST_SDK\vst3sdk\pluginterfaces\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>6031;6308;6330;6385;6386;28125;28251;4221</DisableSpecificWarnings>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <OmitFramePointers>true</OmitFramePointers>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <StringPooling>true</StringPooling>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SMTG_RENAME_ASSERT=1;RELEASE=1;_UNICODE;VSTGUI_ENABLE_DEPRECATED_METHODS=1;SMTG_MODULE_IS_BUNDLE=1;CMAKE_INTDIR="Release";Diffscope_VSTi_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SMTG_RENAME_ASSERT=1;RELEASE=1;_UNICODE;VSTGUI_ENABLE_DEPRECATED_METHODS=1;SMTG_MODULE_IS_BUNDLE=1;CMAKE_INTDIR=\"Release\";Diffscope_VSTi_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build;C:\Users\Crs_1\VST_SDK\vst3sdk\vstgui4;C:\Users\Crs_1\VST_SDK\vst3sdk\base\..;C:\Users\Crs_1\VST_SDK\vst3sdk\public.sdk\..;C:\Users\Crs_1\VST_SDK\vst3sdk\pluginterfaces\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build;C:\Users\Crs_1\VST_SDK\vst3sdk\vstgui4;C:\Users\Crs_1\VST_SDK\vst3sdk\base\..;C:\Users\Crs_1\VST_SDK\vst3sdk\public.sdk\..;C:\Users\Crs_1\VST_SDK\vst3sdk\pluginterfaces\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message>[SMTG] Copy PlugIn.ico and desktop.ini and change their attributes.			</Message>
+      <Command>setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/../templates/VST_Logo_Steinberg.ico "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Release/Diffscope_VSTi.vst3/PlugIn.ico"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E copy C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/../templates/desktop.ini.in "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Release/Diffscope_VSTi.vst3/desktop.ini"
+if %errorlevel% neq 0 goto :cmEnd
+attrib +s "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Release/Diffscope_VSTi.vst3/desktop.ini"
+if %errorlevel% neq 0 goto :cmEnd
+attrib +s "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Release/Diffscope_VSTi.vst3/PlugIn.ico"
+if %errorlevel% neq 0 goto :cmEnd
+attrib +s "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Release/Diffscope_VSTi.vst3"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+cd "C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\bin"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\bin\Release\moduleinfotool.exe" -create -version 1.0.0.0 -path "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Release/Diffscope_VSTi.vst3" -output "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Release/Diffscope_VSTi.vst3/Contents/moduleinfo.json"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+cd "C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\bin"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo [SMTG] Validator started...
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\bin\Release\validator.exe" "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Release/Diffscope_VSTi.vst3/Contents/x86_64-win/Diffscope_VSTi.vst3"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo [SMTG] Validator finished.
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo [SMTG] Delete previous link...
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -rf C:/Users/Crs_1/AppData/Local/Programs/Common/VST3/Diffscope_VSTi.vst3
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo [SMTG] Creation of the new link...
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E create_symlink  "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Release/Diffscope_VSTi.vst3" C:/Users/Crs_1/AppData/Local/Programs/Common/VST3/Diffscope_VSTi.vst3
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo [SMTG] Finished.
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>lib\Release\vstgui_support.lib;lib\Release\sdk.lib;lib\Release\vstgui_uidescription.lib;lib\Release\vstgui.lib;lib\Release\sdk_common.lib;lib\Release\base.lib;lib\Release\pluginterfaces.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/lib/Release/Diffscope_VSTi.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/WIN_PDB64/Release/Diffscope_VSTi.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\resource\myplugineditor.uidesc">
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating VST3/Debug/$(TargetFileName)/Contents/Resources/myplugineditor.uidesc</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/resource/myplugineditor.uidesc" "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Debug/$(TargetFileName)/Contents/Resources/myplugineditor.uidesc"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo "[SMTG] Copied C:/Users/Crs_1/VST_SDK/Diffscope VSTi/resource/myplugineditor.uidesc to C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Debug/$(TargetFileName)/Contents/Resources/myplugineditor.uidesc"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\VST3\Debug\$(TargetFileName)\Contents\Resources\myplugineditor.uidesc</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating VST3/Release/$(TargetFileName)/Contents/Resources/myplugineditor.uidesc</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/resource/myplugineditor.uidesc" "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Release/$(TargetFileName)/Contents/Resources/myplugineditor.uidesc"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo "[SMTG] Copied C:/Users/Crs_1/VST_SDK/Diffscope VSTi/resource/myplugineditor.uidesc to C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Release/$(TargetFileName)/Contents/Resources/myplugineditor.uidesc"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\VST3\Release\$(TargetFileName)\Contents\Resources\myplugineditor.uidesc</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\resource\A87D935EAD9951139D73465028C89294_snapshot.png">
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating VST3/Debug/$(TargetFileName)/Contents/Resources/Snapshots/A87D935EAD9951139D73465028C89294_snapshot.png</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/resource/A87D935EAD9951139D73465028C89294_snapshot.png" "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Debug/$(TargetFileName)/Contents/Resources/Snapshots/A87D935EAD9951139D73465028C89294_snapshot.png"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo "[SMTG] Copied C:/Users/Crs_1/VST_SDK/Diffscope VSTi/resource/A87D935EAD9951139D73465028C89294_snapshot.png to C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Debug/$(TargetFileName)/Contents/Resources/Snapshots/A87D935EAD9951139D73465028C89294_snapshot.png"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\VST3\Debug\$(TargetFileName)\Contents\Resources\Snapshots\A87D935EAD9951139D73465028C89294_snapshot.png</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating VST3/Release/$(TargetFileName)/Contents/Resources/Snapshots/A87D935EAD9951139D73465028C89294_snapshot.png</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/resource/A87D935EAD9951139D73465028C89294_snapshot.png" "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Release/$(TargetFileName)/Contents/Resources/Snapshots/A87D935EAD9951139D73465028C89294_snapshot.png"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo "[SMTG] Copied C:/Users/Crs_1/VST_SDK/Diffscope VSTi/resource/A87D935EAD9951139D73465028C89294_snapshot.png to C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Release/$(TargetFileName)/Contents/Resources/Snapshots/A87D935EAD9951139D73465028C89294_snapshot.png"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\VST3\Release\$(TargetFileName)\Contents\Resources\Snapshots\A87D935EAD9951139D73465028C89294_snapshot.png</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\resource\A87D935EAD9951139D73465028C89294_snapshot_2.0x.png">
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating VST3/Debug/$(TargetFileName)/Contents/Resources/Snapshots/A87D935EAD9951139D73465028C89294_snapshot_2.0x.png</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/resource/A87D935EAD9951139D73465028C89294_snapshot_2.0x.png" "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Debug/$(TargetFileName)/Contents/Resources/Snapshots/A87D935EAD9951139D73465028C89294_snapshot_2.0x.png"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo "[SMTG] Copied C:/Users/Crs_1/VST_SDK/Diffscope VSTi/resource/A87D935EAD9951139D73465028C89294_snapshot_2.0x.png to C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Debug/$(TargetFileName)/Contents/Resources/Snapshots/A87D935EAD9951139D73465028C89294_snapshot_2.0x.png"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\VST3\Debug\$(TargetFileName)\Contents\Resources\Snapshots\A87D935EAD9951139D73465028C89294_snapshot_2.0x.png</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating VST3/Release/$(TargetFileName)/Contents/Resources/Snapshots/A87D935EAD9951139D73465028C89294_snapshot_2.0x.png</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/resource/A87D935EAD9951139D73465028C89294_snapshot_2.0x.png" "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Release/$(TargetFileName)/Contents/Resources/Snapshots/A87D935EAD9951139D73465028C89294_snapshot_2.0x.png"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo "[SMTG] Copied C:/Users/Crs_1/VST_SDK/Diffscope VSTi/resource/A87D935EAD9951139D73465028C89294_snapshot_2.0x.png to C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/VST3/Release/$(TargetFileName)/Contents/Resources/Snapshots/A87D935EAD9951139D73465028C89294_snapshot_2.0x.png"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\VST3\Release\$(TargetFileName)\Contents\Resources\Snapshots\A87D935EAD9951139D73465028C89294_snapshot_2.0x.png</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/Crs_1/VST_SDK/Diffscope VSTi/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Crs_1/VST_SDK/Diffscope VSTi" "-BC:/Users/Crs_1/VST_SDK/Diffscope VSTi/build" --check-stamp-file "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeCCompilerABI.c;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeCXXCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeCXXCompilerABI.cpp;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeDetermineCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeDetermineCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeDetermineCompileFeatures.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeDetermineRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeParseLibraryArchitecture.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeRCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeTestCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeTestCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeTestRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\IBMClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\LCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\LCC-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\NVHPC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Tasking-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-3.26\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Platform\Windows-Determine-CXX.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Platform\WindowsPaths.cmake;C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\CMakeFiles\3.26.0-rc5\CMakeCCompiler.cmake;C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\CMakeFiles\3.26.0-rc5\CMakeCXXCompiler.cmake;C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\CMakeFiles\3.26.0-rc5\CMakeRCCompiler.cmake;C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\CMakeFiles\3.26.0-rc5\CMakeSystem.cmake;C:\Users\Crs_1\VST_SDK\vst3sdk\cmake\templates\projectversion.h.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/Crs_1/VST_SDK/Diffscope VSTi/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Crs_1/VST_SDK/Diffscope VSTi" "-BC:/Users/Crs_1/VST_SDK/Diffscope VSTi/build" --check-stamp-file "C:/Users/Crs_1/VST_SDK/Diffscope VSTi/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeCCompilerABI.c;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeCXXCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeCXXCompilerABI.cpp;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeDetermineCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeDetermineCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeDetermineCompileFeatures.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeDetermineRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeParseLibraryArchitecture.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeRCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeTestCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeTestCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CMakeTestRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\IBMClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\LCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\LCC-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\NVHPC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Tasking-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-3.26\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Platform\Windows-Determine-CXX.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.26\Modules\Platform\WindowsPaths.cmake;C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\CMakeFiles\3.26.0-rc5\CMakeCCompiler.cmake;C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\CMakeFiles\3.26.0-rc5\CMakeCXXCompiler.cmake;C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\CMakeFiles\3.26.0-rc5\CMakeRCCompiler.cmake;C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\CMakeFiles\3.26.0-rc5\CMakeSystem.cmake;C:\Users\Crs_1\VST_SDK\vst3sdk\cmake\templates\projectversion.h.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\source\version.h" />
+    <ClInclude Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\source\myplugincids.h" />
+    <ClInclude Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\source\mypluginprocessor.h" />
+    <ClCompile Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\source\mypluginprocessor.cpp" />
+    <ClInclude Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\source\myplugincontroller.h" />
+    <ClCompile Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\source\myplugincontroller.cpp" />
+    <ClCompile Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\source\mypluginentry.cpp" />
+    <ClCompile Include="C:\Users\Crs_1\VST_SDK\vst3sdk\public.sdk\source\main\dllmain.cpp" />
+    <ResourceCompile Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\resource\win32resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\ZERO_CHECK.vcxproj">
+      <Project>{210A4E25-1CC7-3679-ABDA-A5C45D81F37E}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\vst3sdk\base\base.vcxproj">
+      <Project>{C03FCC9D-0CEC-3A0A-825C-95D092D09B12}</Project>
+      <Name>base</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\vst3sdk\public.sdk\samples\vst-utilities\moduleinfotool\moduleinfotool.vcxproj">
+      <Project>{97248B98-3382-35E9-921E-BE1A739D17CF}</Project>
+      <Name>moduleinfotool</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\vst3sdk\pluginterfaces\pluginterfaces.vcxproj">
+      <Project>{CDDADD21-255E-393C-967D-B4F7EB9E739C}</Project>
+      <Name>pluginterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\vst3sdk\public.sdk\sdk.vcxproj">
+      <Project>{D7E73580-4053-36BA-A17F-F072A23F115C}</Project>
+      <Name>sdk</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\vst3sdk\public.sdk\sdk_common.vcxproj">
+      <Project>{CDEFEE79-2D99-351F-BA90-2F1608B4703A}</Project>
+      <Name>sdk_common</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\vst3sdk\public.sdk\samples\vst-hosting\validator\validator.vcxproj">
+      <Project>{7D35EC09-B790-3BFE-9DB9-B0A320BCAEF5}</Project>
+      <Name>validator</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\vst3sdk\VSTGUI.build\vstgui\lib\vstgui.vcxproj">
+      <Project>{3A400CAD-0C80-3F88-AC8E-4C334737E78C}</Project>
+      <Name>vstgui</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\vst3sdk\vstgui_support.vcxproj">
+      <Project>{D4AB70FA-57E1-3908-A810-542A568E5236}</Project>
+      <Name>vstgui_support</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\build\vst3sdk\VSTGUI.build\vstgui\uidescription\vstgui_uidescription.vcxproj">
+      <Project>{8CC884F2-6BF5-362D-9CDC-15E4C97DE937}</Project>
+      <Name>vstgui_uidescription</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

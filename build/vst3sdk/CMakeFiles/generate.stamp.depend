@@ -1,0 +1,30 @@
+# CMake generation dependency list for this directory.
+C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeParseArguments.cmake
+C:/Program Files/CMake/share/cmake-3.26/Modules/CMakePrintHelpers.cmake
+C:/Program Files/CMake/share/cmake-3.26/Modules/CheckLanguage.cmake
+C:/Program Files/CMake/share/cmake-3.26/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.26/Modules/FindPackageMessage.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/CMakeLists.txt
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_AAXSupport.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_AddCommonOptions.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_AddSMTGLibrary.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_AddVST3Library.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_AddVST3Options.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_Bundle.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_CodeSign.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_ConfigureCmakeGenerator.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_CoreAudioSupport.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_CustomModuleTarget.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_DetectPlatform.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_ExportedSymbols.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_FindJack.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_Global.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_PlatformIOS.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_PlatformToolset.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_Platform_Windows.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_PrefixHeader.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_SetDebugExecutable.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_SetupVST3LibraryDefaultPath.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_UniversalBinary.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_VST3_SDK.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/cmake/modules/SMTG_VstGuiSupport.cmake

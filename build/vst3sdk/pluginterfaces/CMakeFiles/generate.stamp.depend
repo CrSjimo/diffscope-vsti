@@ -1,0 +1,4 @@
+# CMake generation dependency list for this directory.
+C:/Program Files/CMake/share/cmake-3.26/Modules/CheckSourceCompiles.cmake
+C:/Program Files/CMake/share/cmake-3.26/Modules/Internal/CheckSourceCompiles.cmake
+C:/Users/Crs_1/VST_SDK/vst3sdk/pluginterfaces/CMakeLists.txt

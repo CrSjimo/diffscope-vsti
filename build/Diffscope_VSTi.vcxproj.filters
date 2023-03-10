@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\source\mypluginprocessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\source\myplugincontroller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\source\mypluginentry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Crs_1\VST_SDK\vst3sdk\public.sdk\source\main\dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\source\version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\source\myplugincids.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\source\mypluginprocessor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\source\myplugincontroller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\resource\myplugineditor.uidesc" />
+    <CustomBuild Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\resource\A87D935EAD9951139D73465028C89294_snapshot.png">
+      <Filter>Resources</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\resource\A87D935EAD9951139D73465028C89294_snapshot_2.0x.png">
+      <Filter>Resources</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="C:\Users\Crs_1\VST_SDK\Diffscope VSTi\resource\win32resource.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{1CEA1F55-42CE-32BC-9758-BDB9DA66E1A3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{3ED962D3-E31C-3A74-9413-C20DA85C69B1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{BCF0D319-452D-3664-986E-9ACADE67FAA6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
