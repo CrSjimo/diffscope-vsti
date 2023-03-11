@@ -12,7 +12,7 @@
 #define stringPluginName "Diffscope VSTi"
 
 using namespace Steinberg::Vst;
-using namespace MyCompanyName;
+using namespace OpenVpi;
 
 //------------------------------------------------------------------------
 //  VST Plug-in Entry

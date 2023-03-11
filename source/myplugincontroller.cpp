@@ -8,7 +8,7 @@
 
 using namespace Steinberg;
 
-namespace MyCompanyName {
+namespace OpenVpi {
 
 //------------------------------------------------------------------------
 // DiffscopeVstiPluginController Implementation

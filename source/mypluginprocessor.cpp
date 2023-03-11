@@ -10,7 +10,7 @@
 
 using namespace Steinberg;
 
-namespace MyCompanyName {
+namespace OpenVpi {
 //------------------------------------------------------------------------
 // DiffscopeVstiPluginProcessor
 //------------------------------------------------------------------------

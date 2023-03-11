@@ -6,7 +6,7 @@
 
 #include "public.sdk/source/vst/vsteditcontroller.h"
 
-namespace MyCompanyName {
+namespace OpenVpi {
 
 //------------------------------------------------------------------------
 //  DiffscopeVstiPluginController
