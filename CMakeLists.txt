@@ -14,6 +14,9 @@ project(Diffscope_VSTi
     DESCRIPTION "Diffscope_VSTi VST 3 Plug-in"
 )
 
+# Add libraries directory
+add_subdirectory(libraries)
+
 set(SMTG_VSTGUI_ROOT "${vst3sdk_SOURCE_DIR}")
 
 add_subdirectory(${vst3sdk_SOURCE_DIR} ${PROJECT_BINARY_DIR}/vst3sdk)
@@ -27,7 +30,11 @@ smtg_add_vst3plugin(Diffscope_VSTi
     source/myplugincontroller.h
     source/myplugincontroller.cpp
     source/mypluginentry.cpp
+    source/libraryloader.h
+    source/libraryloader.cpp
 )
+
+target_link_libraries(Diffscope_VSTi PRIVATE loadso)
 
 #- VSTGUI Wanted ----
 if(SMTG_ADD_VSTGUI)

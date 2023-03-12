@@ -1,48 +1,69 @@
-#include"libraryloader.h"
-#include<fstream>
-#include<codecvt>
-#include<locale>
+#include "libraryloader.h"
+
+#include <fstream>
+#include <locale>
+#include <sstream>
+
+#include <loadso/library.h>
+#include <loadso/system.h>
 
 namespace OpenVpi {
 
-	std::wstring getEditorLibraryPath() {
+    class LibraryLoaderPrivate {
+    public:
+        LoadSO::Library lib;
+
+        static LoadSO::PathString configPath() {
+            return
 #ifdef _WIN32
-		std::string configPath("%LOCALAPPDATA%\\DiffScope\\VST_LIB_PATH");
+                LOADSO_STR("%LOCALAPPDATA%\\ChorusKit\\DiffScope\\vstconfig.txt")
 #elif __linux__
-		std::string configPath("~/.local/share/DiffScope/VST_LIB_PATH");
+                LOADSO_STR("~/.local/share/ChorusKit/DiffScope/vstconfig.txt")
 #else
-		std::string configPath("~/Library/Application Support/DiffScope/VST_LIB_PATH");
+                LOADSO_STR("~/Library/Application Support/ChorusKit/DiffScope/vstconfig.txt")
 #endif
-		std::wifstream configFile;
-		configFile.open(configPath, std::ios_base::in);
-		if (!configFile.is_open()) {
-			return L"";
-		}
-		std::wstring result;
-		configFile >> result;
-		return result;
-	}
+                    ;
+        }
+    };
 
-	LibraryHandle loadLibrary(const std::wstring& libraryPath) {
+    LibraryLoader::LibraryLoader() : d(std::make_unique<LibraryLoaderPrivate>()) {
+        auto path = d->configPath();
 #ifdef _WIN32
-		auto splitPos = libraryPath.find_last_of('\\');
-		if (splitPos == libraryPath.npos) {
-			return nullptr;
-		}
-		::AddDllDirectory(libraryPath.substr(0, splitPos).c_str());
-		return ::LoadLibraryW(libraryPath.c_str());
+        std::wfstream
 #else
-		std::wstring_convert<std::codecvt_byname<wchar_t, char, std::mbstate_t>> converter(new std::string(std::setlocale(LC_ALL, "")));
-		return ::dlopen(converter.to_bytes(libraryPath).c_str(), RTLD_LAZY);
+        std::fstream
 #endif
-	}
+            fs;
 
-	void* invokeLibrary(const LibraryHandle library, const char* symbolName) {
-#ifdef _WIN32
-		return ::GetProcAddress(library, symbolName);
-#else
-		return ::dlsym(library, symbolName)
-#endif
-	}
+        // Read configuration
+        fs.open(path, std::ios::in);
+        if (fs.fail()) {
+            std::cerr << "Open configuration failed!" << std::endl;
+            return;
+        }
+
+        std::stringstream ss;
+        ss << fs.rdbuf();
+
+        std::string content;
+        ss >> content;
+
+        // Trim path
+        while (content.size() && (content.back() == '\n' || content.back() == '\r')) {
+            content.pop_back();
+        }
+
+        // Load library
+        auto dllPath = LoadSO::System::MultiToWide(content);
+        LoadSO::System::PrintLine(LOADSO_STR("Dll: ") + dllPath);
+
+        if (!d->lib.open(dllPath)) {
+            LoadSO::System::ShowError(d->lib.lastError());
+            return;
+        }
+    }
+
+    LibraryLoader::~LibraryLoader() {
+    }
 
 }

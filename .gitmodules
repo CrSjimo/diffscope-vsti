@@ -1,0 +1,3 @@
+[submodule "libraries/loadso"]
+	path = libraries/loadso
+	url = git@github.com:SineStriker/loadso.git
