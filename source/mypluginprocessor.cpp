@@ -7,6 +7,7 @@
 
 #include "base/source/fstreamer.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"
+#include "bridge.h"
 
 using namespace Steinberg;
 
@@ -28,7 +29,7 @@ DiffscopeVstiPluginProcessor::~DiffscopeVstiPluginProcessor ()
 tresult PLUGIN_API DiffscopeVstiPluginProcessor::initialize (FUnknown* context)
 {
 	// Here the Plug-in will be instantiated
-	
+
 	//---always initialize the parent-------
 	tresult result = AudioEffect::initialize (context);
 	// if everything Ok, continue
@@ -42,7 +43,7 @@ tresult PLUGIN_API DiffscopeVstiPluginProcessor::initialize (FUnknown* context)
 	addAudioOutput (STR16 ("Stereo Out"), Steinberg::Vst::SpeakerArr::kStereo);
 
 	/* If you don't need an event bus, you can remove the next line */
-	addEventInput (STR16 ("Event In"), 1);
+	addEventInput (STR16 ("Event In"), 16);
 
 	return kResultOk;
 }
@@ -87,6 +88,8 @@ tresult PLUGIN_API DiffscopeVstiPluginProcessor::process (Vst::ProcessData& data
 	
 	//--- Here you have to implement your processing
 
+	bridge(data.processContext, data.outputs->numChannels, data.inputs[0].channelBuffers32, data.outputs[0].channelBuffers32, data.numSamples);
+
 	return kResultOk;
 }
 
@@ -116,7 +119,6 @@ tresult PLUGIN_API DiffscopeVstiPluginProcessor::setState (IBStream* state)
 {
 	// called when we load a preset, the model has to be reloaded
 	IBStreamer streamer (state, kLittleEndian);
-	
 	return kResultOk;
 }
 

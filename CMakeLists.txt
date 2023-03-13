@@ -30,8 +30,8 @@ smtg_add_vst3plugin(Diffscope_VSTi
     source/myplugincontroller.h
     source/myplugincontroller.cpp
     source/mypluginentry.cpp
-    source/libraryloader.h
-    source/libraryloader.cpp
+    source/bridge.h
+    source/bridge.cpp
 )
 
 target_link_libraries(Diffscope_VSTi PRIVATE loadso)
