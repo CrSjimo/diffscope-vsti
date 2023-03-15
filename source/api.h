@@ -20,9 +20,11 @@ namespace OpenVpi {
         int32_t numChannels;
         int32_t numSamples;
 
-    }
+    };
 
-    using PlaybackProcessor = Result (*)(const PlaybackParameters *playbackParameters, float **outputs);
-    using StateChangedCallback = Result (*)(const uint8_t* data, size_t size);
+    using PlaybackProcessor = Result (*)(const PlaybackParameters *playbackParameters, int32_t numOutputs, float*** output); // outputs[busId][channelId][sampleId]
+    using StateChangedCallback = Result (*)(uint64_t size, const uint8_t* data);
+    using StateWillSaveCallback = Result (*)(uint64_t& size, uint8_t*& data);
+    using StateSavedAsyncCallBack = void (*)(uint8_t* dataToFree);
 
 }

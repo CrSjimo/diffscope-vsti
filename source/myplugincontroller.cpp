@@ -4,7 +4,6 @@
 
 #include "myplugincontroller.h"
 #include "myplugincids.h"
-#include "vstgui/plugin-bindings/vst3editor.h"
 
 using namespace Steinberg;
 

@@ -39,11 +39,26 @@ tresult PLUGIN_API DiffscopeVstiPluginProcessor::initialize (FUnknown* context)
 	}
 
 	//--- create Audio IO ------
-	addAudioInput (STR16 ("Stereo In"), Steinberg::Vst::SpeakerArr::kStereo);
-	addAudioOutput (STR16 ("Stereo Out"), Steinberg::Vst::SpeakerArr::kStereo);
+	//addAudioInput (STR16 ("Stereo In"), Steinberg::Vst::SpeakerArr::kStereo);
+	addAudioOutput (STR16 ("Stereo Out 1"), Steinberg::Vst::SpeakerArr::kStereo);
+	addAudioOutput (STR16 ("Stereo Out 2"), Steinberg::Vst::SpeakerArr::kStereo);
+	addAudioOutput (STR16 ("Stereo Out 3"), Steinberg::Vst::SpeakerArr::kStereo);
+	addAudioOutput (STR16 ("Stereo Out 4"), Steinberg::Vst::SpeakerArr::kStereo);
+	addAudioOutput (STR16 ("Stereo Out 5"), Steinberg::Vst::SpeakerArr::kStereo);
+	addAudioOutput (STR16 ("Stereo Out 6"), Steinberg::Vst::SpeakerArr::kStereo);
+	addAudioOutput (STR16 ("Stereo Out 7"), Steinberg::Vst::SpeakerArr::kStereo);
+	addAudioOutput (STR16 ("Stereo Out 8"), Steinberg::Vst::SpeakerArr::kStereo);
+	addAudioOutput (STR16 ("Stereo Out 9"), Steinberg::Vst::SpeakerArr::kStereo);
+	addAudioOutput (STR16 ("Stereo Out 10"), Steinberg::Vst::SpeakerArr::kStereo);
+	addAudioOutput (STR16 ("Stereo Out 11"), Steinberg::Vst::SpeakerArr::kStereo);
+	addAudioOutput (STR16 ("Stereo Out 12"), Steinberg::Vst::SpeakerArr::kStereo);
+	addAudioOutput (STR16 ("Stereo Out 13"), Steinberg::Vst::SpeakerArr::kStereo);
+	addAudioOutput (STR16 ("Stereo Out 14"), Steinberg::Vst::SpeakerArr::kStereo);
+	addAudioOutput (STR16 ("Stereo Out 15"), Steinberg::Vst::SpeakerArr::kStereo);
+	addAudioOutput (STR16 ("Stereo Out 16"), Steinberg::Vst::SpeakerArr::kStereo);
 
 	/* If you don't need an event bus, you can remove the next line */
-	addEventInput (STR16 ("Event In"), 16);
+	addEventInput (STR16 ("Event In"), 1);
 
 	return kResultOk;
 }
@@ -88,9 +103,8 @@ tresult PLUGIN_API DiffscopeVstiPluginProcessor::process (Vst::ProcessData& data
 	
 	//--- Here you have to implement your processing
 
-	bridge(data.processContext, data.outputs->numChannels, data.inputs[0].channelBuffers32, data.outputs[0].channelBuffers32, data.numSamples);
+	return bridge(data.processContext, data.numOutputs, data.outputs, data.numSamples);
 
-	return kResultOk;
 }
 
 //------------------------------------------------------------------------
@@ -119,6 +133,17 @@ tresult PLUGIN_API DiffscopeVstiPluginProcessor::setState (IBStream* state)
 {
 	// called when we load a preset, the model has to be reloaded
 	IBStreamer streamer (state, kLittleEndian);
+    uint64_t size;
+    if(!streamer.readInt64u(size)) { // Storage is empty
+        return kResultOk;
+    }
+    auto* data = new uint8_t[size];
+    if(streamer.readRaw(data, size) != size) {
+        // TODO: handle error
+        return kInternalError;
+    }
+    // TODO: invoke editor synchronously to put data
+    delete[] data;
 	return kResultOk;
 }
 
@@ -127,7 +152,14 @@ tresult PLUGIN_API DiffscopeVstiPluginProcessor::getState (IBStream* state)
 {
 	// here we need to save the model
 	IBStreamer streamer (state, kLittleEndian);
-
+    uint64_t size;
+    uint8_t* data;
+    // TODO: invoke editor synchronously to get data
+    if(!streamer.writeInt64u(size) || streamer.writeRaw(data, size) != size) {
+        // TODO: handle error
+        return kInternalError;
+    }
+    // TODO: invoke editor asynchronously to free data
 	return kResultOk;
 }
 
