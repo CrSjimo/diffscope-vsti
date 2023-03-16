@@ -21,9 +21,9 @@ using namespace OpenVpi;
 // GetPluginFactory function!
 //------------------------------------------------------------------------
 
-BEGIN_FACTORY_DEF ("OpenVpi Team", 
-			       "https://www.mycompanyname.com", 
-			       "mailto:info@mycompanyname.com")
+BEGIN_FACTORY_DEF ("OpenVPI Team",
+			       "https://example.org/openvpi",
+			       "mailto:openvpi@example.org")
 
 	//---First Plug-in included in this factory-------
 	// its kVstAudioEffectClass component

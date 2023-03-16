@@ -103,7 +103,7 @@ tresult PLUGIN_API DiffscopeVstiPluginProcessor::process (Vst::ProcessData& data
 	
 	//--- Here you have to implement your processing
 
-	return bridge(data.processContext, data.numOutputs, data.outputs, data.numSamples);
+	return processPlayback(data.processContext, data.numOutputs, data.outputs, data.numSamples);
 
 }
 

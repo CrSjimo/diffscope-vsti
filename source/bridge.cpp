@@ -3,8 +3,12 @@
 using namespace std;
 
 namespace OpenVpi {
-    tresult bridge(ProcessContext *processContext, int32 numOutputs, AudioBusBuffers *output, int32 numSamples) {
+    ErrorDisplay* errorDisplay = new ErrorDisplay;
+    tresult processPlayback(ProcessContext *processContext, int32 numOutputs, AudioBusBuffers *output, int32 numSamples) {
         // TODO: invoke editor synchronously to process data
         return kResultOk;
+    }
+    ErrorDisplay* getErrorDisplay() {
+        return errorDisplay;
     }
 }
