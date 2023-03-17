@@ -19,8 +19,9 @@ namespace OpenVpi {
 
     VSTGUI::IController * MyPluginEditor::createSubController(VSTGUI::UTF8StringPtr name, const VSTGUI::IUIDescription *description) {
         if(strcmp(name, "MyTextController") == 0) {
-            ErrorDisplay::myTextController = new MyTextController();
-            return ErrorDisplay::myTextController;
+            auto* myTextController = new MyTextController();
+            ErrorDisplay::getInstance()->setTextController(myTextController);
+            return myTextController;
         } else if(strcmp(name, "MyButtonController") == 0) {
             return new MyButtonController();
         } else {

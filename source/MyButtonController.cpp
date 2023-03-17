@@ -20,6 +20,6 @@ namespace OpenVpi {
 
     void MyButtonController::valueChanged(CControl *pControl) {
         // TODO: Show editor window
-        errorDisplay->showError("Show editor window");
+        ErrorDisplay::getInstance()->showError("Show editor window");
     }
 } // OpenVpi

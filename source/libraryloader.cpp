@@ -7,6 +7,9 @@
 #include <loadso/library.h>
 #include <loadso/system.h>
 
+#include "Api.h"
+#include "ErrorDisplay.h"
+
 namespace OpenVpi {
 
     class LibraryLoaderPrivate {
