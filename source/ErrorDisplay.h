@@ -13,11 +13,16 @@
 #define ERR_INITIALIZATION ERR_STR(2, "Initialization failed. See logs for details.")
 #define ERR_SINGLETON ERR_STR(3, "Multiple DiffScope Editor/VSTi cannot be run simultaneously.")
 
+#define ERR_PLAYBACK ERR_STR(16, "Playback failed.")
+#define ERR_GET_STATE ERR_STR(17, "Cannot save state.")
+#define ERR_SET_STATE ERR_STR(18, "Cannot load state.")
+
 namespace OpenVpi {
 
     class ErrorDisplay {
     public:
         static ErrorDisplay* getInstance();
+        static void destroyInstance();
         void setTextController(MyTextController* textController);
         void showError(const char* errorMessage);
     private:

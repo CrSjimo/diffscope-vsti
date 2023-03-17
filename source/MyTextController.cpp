@@ -8,7 +8,7 @@ using namespace VSTGUI;
 using namespace std;
 
 namespace OpenVpi {
-    //string MyTextController::textMessage = "";
+
     CView *MyTextController::verifyView(CView *view, const UIAttributes &attributes, const IUIDescription *description) {
         auto* textLabel = dynamic_cast<CTextLabel*>(view);
         this->textLabel = textLabel;
@@ -16,7 +16,9 @@ namespace OpenVpi {
     }
 
     void MyTextController::setText(const char* str) {
-        textLabel->setText(str);
+        if(textLabel){
+            textLabel->setText(str);
+        }
     }
     void MyTextController::valueChanged(VSTGUI::CControl *pControl) {}
 } // OpenVpi

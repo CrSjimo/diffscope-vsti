@@ -8,8 +8,8 @@ namespace OpenVpi {
     ErrorDisplay* ErrorDisplay::instance = nullptr;
 
     void ErrorDisplay::showError(const char *errorMessage) {
-        if(ErrorDisplay::myTextController) {
-            ErrorDisplay::myTextController->setText(errorMessage);
+        if(myTextController) {
+            myTextController->setText(errorMessage);
         }
     }
 
@@ -18,6 +18,12 @@ namespace OpenVpi {
             return instance;
         } else {
             return instance = new ErrorDisplay;
+        }
+    }
+
+    void ErrorDisplay::destroyInstance() {
+        if(instance) {
+            delete instance;
         }
     }
 

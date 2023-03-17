@@ -42,9 +42,13 @@ smtg_add_vst3plugin(Diffscope_VSTi
     source/MyButtonController.cpp
     source/MyTextController.h
     source/MyTextController.cpp
+    source/Api.h
+    source/Api.cpp
 )
 
 target_link_libraries(Diffscope_VSTi PRIVATE loadso)
+
+set_target_properties(Diffscope_VSTi PROPERTIES CXX_STANDARD 20)
 
 #- VSTGUI Wanted ----
 if(SMTG_ADD_VSTGUI)

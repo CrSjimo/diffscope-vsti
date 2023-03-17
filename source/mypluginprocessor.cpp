@@ -8,6 +8,7 @@
 #include "base/source/fstreamer.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"
 #include "bridge.h"
+#include "Api.h"
 
 using namespace Steinberg;
 
@@ -67,7 +68,9 @@ tresult PLUGIN_API DiffscopeVstiPluginProcessor::initialize (FUnknown* context)
 tresult PLUGIN_API DiffscopeVstiPluginProcessor::terminate ()
 {
 	// Here the Plug-in will be de-instantiated, last possibility to remove some memory!
-	
+    OpenVpi::terminate();
+    Api::destroyInstance();
+    ErrorDisplay::destroyInstance();
 	//---do not forget to call parent ------
 	return AudioEffect::terminate ();
 }
@@ -139,10 +142,15 @@ tresult PLUGIN_API DiffscopeVstiPluginProcessor::setState (IBStream* state)
     }
     auto* data = new uint8_t[size];
     if(streamer.readRaw(data, size) != size) {
-        // TODO: handle error
+        ErrorDisplay::getInstance()->showError(ERR_SET_STATE);
+        delete[] data;
         return kInternalError;
     }
-    // TODO: invoke editor synchronously to put data
+    auto bridgeResult = putData(size, data);
+    if(bridgeResult != kResultOk) {
+        delete[] data;
+        return bridgeResult;
+    }
     delete[] data;
 	return kResultOk;
 }
@@ -154,12 +162,17 @@ tresult PLUGIN_API DiffscopeVstiPluginProcessor::getState (IBStream* state)
 	IBStreamer streamer (state, kLittleEndian);
     uint64_t size;
     uint8_t* data;
-    // TODO: invoke editor synchronously to get data
+    auto bridgeResult = saveData(size, data);
+    if(bridgeResult != kResultOk) {
+        freeData(data);
+        return bridgeResult;
+    }
     if(!streamer.writeInt64u(size) || streamer.writeRaw(data, size) != size) {
-        // TODO: handle error
+        ErrorDisplay::getInstance()->showError(ERR_GET_STATE);
+        freeData(data);
         return kInternalError;
     }
-    // TODO: invoke editor asynchronously to free data
+    freeData(data);
 	return kResultOk;
 }
 

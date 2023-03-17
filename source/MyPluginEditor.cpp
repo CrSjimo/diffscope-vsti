@@ -3,8 +3,6 @@
 //
 
 #include "MyPluginEditor.h"
-#include "MyButtonController.h"
-#include "MyTextController.h"
 #include "bridge.h"
 #include <cstring>
 
@@ -14,16 +12,22 @@ using namespace std;
 
 namespace OpenVpi {
     MyPluginEditor::MyPluginEditor(Steinberg::Vst::EditController *controller): VSTGUI::VST3Editor(controller, "view", "myplugineditor.uidesc") {
+        myTextController = new MyTextController();
+        myButtonController = new MyButtonController();
+    }
 
+    MyPluginEditor::~MyPluginEditor() {
+        //delete myTextController;
+        //delete myButtonController;
+        //VST3Editor::~VST3Editor();
     }
 
     VSTGUI::IController * MyPluginEditor::createSubController(VSTGUI::UTF8StringPtr name, const VSTGUI::IUIDescription *description) {
         if(strcmp(name, "MyTextController") == 0) {
-            auto* myTextController = new MyTextController();
             ErrorDisplay::getInstance()->setTextController(myTextController);
             return myTextController;
         } else if(strcmp(name, "MyButtonController") == 0) {
-            return new MyButtonController();
+            return myButtonController;
         } else {
             return nullptr;
         }

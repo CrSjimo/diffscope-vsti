@@ -1,7 +1,3 @@
-//
-// Created by Crs_1 on 2023/3/17.
-//
-
 #include "Api.h"
 
 using namespace std;
@@ -25,16 +21,20 @@ namespace OpenVpi {
         }
     }
 
-    template<typename T>
-    void Api::addHandle(std::string name, T *handle) {
-        this->apiHandlesDict->insert(name, handle);
+    void Api::destroyInstance() {
+        if(instance) {
+            delete instance;
+        }
     }
 
-    template<typename T>
-    T* Api::getHandle(std::string name) {
+    void Api::addHandle(std::string name, void* handle) {
+        this->apiHandlesDict->insert(map<string, void*>::value_type(name, handle));
+    }
+
+    void* Api::getHandle(std::string name) {
         auto handleIter = this->apiHandlesDict->find(name);
         if(handleIter == this->apiHandlesDict->end()) return nullptr;
-        else return dynamic_cast<T*>(*handleIter);
+        else return handleIter->second;
     }
 
     void Api::setInitializationState(bool state) {

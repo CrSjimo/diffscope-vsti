@@ -7,6 +7,10 @@
 #include <map>
 #include <string>
 
+#define API_DEF(name, type) using name = type;
+#define API_CALL(name) (name)Api::getInstance()->getHandle(#name)
+#define API_SET(name, handler) Api::getInstance()->adddHandler(#name, handler)
+
 namespace OpenVpi {
 
     enum Result {
@@ -28,24 +32,25 @@ namespace OpenVpi {
 
     };
 
-    using SingletonChecker = bool (*)();
-    using Initializer = Result (*)();
-    using Terminator = Result (*)();
-    using WindowOpener = Result (*)();
-    using WindowCloser = void (*)();
-    using PlaybackProcessor = Result (*)(const PlaybackParameters *playbackParameters, int32_t numOutputs, float*** output); // outputs[busId][channelId][sampleId]
-    using StateChangedCallback = Result (*)(uint64_t size, const uint8_t* data);
-    using StateWillSaveCallback = Result (*)(uint64_t& size, uint8_t*& data);
-    using StateSavedAsyncCallBack = void (*)(uint8_t* dataToFree);
+    API_DEF(SingletonChecker, bool (*)())
+    API_DEF(Initializer, Result (*)())
+    API_DEF(Terminator, Result (*)())
+    API_DEF(WindowOpener, Result (*)())
+    API_DEF(WindowCloser, void (*)())
+    API_DEF(PlaybackProcessor, Result (*)(const PlaybackParameters *playbackParameters, int32_t numOutputs, float*** outputs)) // outputs[busId][channelId][sampleId]
+    API_DEF(StateChangedCallback, Result (*)(uint64_t size, const uint8_t* data))
+    API_DEF(StateWillSaveCallback, Result (*)(uint64_t& size, uint8_t*& data))
+    API_DEF(StateSavedAsyncCallBack, void (*)(uint8_t* dataToFree))
+
     class Api {
     public:
 
         static Api* getInstance();
-        template<typename T>
-        void addHandle(std::string name, T* handle);
+        static void destroyInstance();
 
-        template<typename T>
-        T* getHandle(std::string name);
+        void addHandle(std::string name, void* handle);
+
+        void* getHandle(std::string name);
 
         void setInitializationState(bool state);
 

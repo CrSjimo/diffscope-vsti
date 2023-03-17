@@ -5,6 +5,7 @@
 #include "myplugincontroller.h"
 #include "myplugincids.h"
 #include "MyPluginEditor.h"
+#include "bridge.h"
 
 using namespace Steinberg;
 
@@ -25,6 +26,8 @@ tresult PLUGIN_API DiffscopeVstiPluginController::initialize (FUnknown* context)
 	}
 
 	// Here you could register some parameters
+
+    OpenVpi::initialize();
 
 	return result;
 }
