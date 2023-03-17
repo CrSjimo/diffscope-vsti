@@ -9,6 +9,6 @@ using namespace Steinberg;
 using namespace Vst;
 
 namespace OpenVpi {
+    extern ErrorDisplay* errorDisplay;
 	tresult processPlayback(ProcessContext * processContext, int32 numOutputs, AudioBusBuffers* output, int32 numSamples);
-    ErrorDisplay* getErrorDisplay();
 }

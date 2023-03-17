@@ -4,7 +4,7 @@
 
 #include "myplugincontroller.h"
 #include "myplugincids.h"
-#include "bridge.h"
+#include "MyPluginEditor.h"
 
 using namespace Steinberg;
 
@@ -72,8 +72,7 @@ IPlugView* PLUGIN_API DiffscopeVstiPluginController::createView (FIDString name)
 	if (FIDStringsEqual (name, Vst::ViewType::kEditor))
 	{
 		// create your editor here and return a IPlugView ptr of it
-		auto* view = new VSTGUI::VST3Editor (this, "view", "myplugineditor.uidesc");
-        getErrorDisplay()->setView(view);
+		auto* view = new MyPluginEditor(this);
         return view;
 	}
 	return nullptr;

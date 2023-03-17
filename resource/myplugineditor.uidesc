@@ -12,7 +12,28 @@
 		},
 		"fonts": {},
 		"colors": {},
-		"gradients": {},
+		"gradients": {
+			"Default TextButton Gradient": [
+				{
+					"rgba": "#dcdcdcff",
+					"start": "0"
+				},
+				{
+					"rgba": "#b4b4b4ff",
+					"start": "1"
+				}
+			],
+			"Default TextButton Gradient Highlighted": [
+				{
+					"rgba": "#b4b4b4ff",
+					"start": "0"
+				},
+				{
+					"rgba": "#646464ff",
+					"start": "1"
+				}
+			]
+		},
 		"control-tags": {},
 		"custom": {
 			"FocusDrawing": {},
@@ -23,24 +44,24 @@
 				"Grids": "1x 1,5x 5,10x 10,12x 12,15x 15"
 			},
 			"UITemplateController": {
-				"SelectedTemplate": "err1"
+				"SelectedTemplate": "view"
 			},
 			"UIEditController": {
 				"EditViewScale": "1",
-				"EditorSize": "0, 0, 500, 545",
+				"EditorSize": "0, 0, 788, 534.4",
 				"EncodeBitmaps": "true",
-				"SplitViewSize_0_0": "0.7495183044315992804129678006574977189302",
-				"SplitViewSize_0_1": "0.2119460500963391003104163701209472492337",
-				"SplitViewSize_1_0": "0.4797687861271676124097496085596503689885",
-				"SplitViewSize_1_1": "0.5105973025048169411377330106915906071663",
-				"SplitViewSize_2_0": "0.6400000000000000133226762955018784850836",
-				"SplitViewSize_2_1": "0.3499999999999999777955395074968691915274",
-				"TabSwitchValue": "4",
+				"SplitViewSize_0_0": "0.7435090479937057628134766673611011356115",
+				"SplitViewSize_0_1": "0.2163650668764752205142087859712773934007",
+				"SplitViewSize_1_0": "0.4819040125885130088079222332453355193138",
+				"SplitViewSize_1_1": "0.509441384736428082291581631579902023077",
+				"SplitViewSize_2_0": "0.7715736040609136869861117702384945005178",
+				"SplitViewSize_2_1": "0.2220812182741116747042298129599657841027",
+				"TabSwitchValue": "0",
 				"Version": "1"
 			},
 			"UIAttributesController": {},
 			"UIViewCreatorDataSource": {
-				"SelectedRow": "9"
+				"SelectedRow": "4"
 			},
 			"UIGradientsDataSource": {
 				"SelectedRow": "-1"
@@ -71,73 +92,26 @@
 					"size": "500, 300",
 					"transparent": "false",
 					"wants-focus": "false"
-				}
-			},
-			"err0": {
-				"attributes": {
-					"background-color": "~ BlackCColor",
-					"background-color-draw-style": "filled and stroked",
-					"bitmap": "banner",
-					"class": "CViewContainer",
-					"mouse-enabled": "true",
-					"opacity": "1",
-					"origin": "0, 0",
-					"size": "500, 300",
-					"transparent": "false",
-					"wants-focus": "false"
 				},
 				"children": {
-					"CTextLabel": {
+					"CMovieButton": {
 						"attributes": {
-							"background-offset": "0, 0",
-							"class": "CTextLabel",
+							"class": "CMovieButton",
 							"default-value": "0.5",
-							"font": "~ NormalFont",
-							"font-antialias": "true",
-							"font-color": "~ RedCColor",
-							"frame-width": "1",
+							"height-of-one-image": "300",
 							"max-value": "1",
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "20, 240",
-							"round-rect-radius": "6",
-							"shadow-color": "~ RedCColor",
-							"size": "460, 20",
-							"style-3D-in": "false",
-							"style-3D-out": "false",
-							"style-no-draw": "false",
-							"style-no-frame": "false",
-							"style-no-text": "false",
-							"style-round-rect": "false",
-							"style-shadow-text": "false",
-							"text-alignment": "left",
-							"text-inset": "0, 0",
-							"text-rotation": "0",
-							"text-shadow-offset": "1, 1",
-							"title": "Error (0): Unable to load configuration",
+							"origin": "0, 0",
+							"size": "500, 300",
+							"sub-controller": "MyButtonController",
+							"sub-pixmaps": "0",
 							"transparent": "false",
-							"value-precision": "2",
-							"wants-focus": "false",
+							"wants-focus": "true",
 							"wheel-inc-value": "0.1"
 						}
-					}
-				}
-			},
-			"err1": {
-				"attributes": {
-					"background-color": "~ BlackCColor",
-					"background-color-draw-style": "filled and stroked",
-					"bitmap": "banner",
-					"class": "CViewContainer",
-					"mouse-enabled": "true",
-					"opacity": "1",
-					"origin": "0, 0",
-					"size": "500, 300",
-					"transparent": "false",
-					"wants-focus": "false"
-				},
-				"children": {
+					},
 					"CTextLabel": {
 						"attributes": {
 							"background-offset": "0, 0",
@@ -146,7 +120,8 @@
 							"font": "~ NormalFont",
 							"font-antialias": "true",
 							"font-color": "~ RedCColor",
-							"frame-width": "1",
+							"back-color": "",
+							"frame-width": "0",
 							"max-value": "1",
 							"min-value": "0",
 							"mouse-enabled": "true",
@@ -162,11 +137,12 @@
 							"style-no-text": "false",
 							"style-round-rect": "false",
 							"style-shadow-text": "false",
+							"sub-controller": "MyTextController",
 							"text-alignment": "left",
 							"text-inset": "0, 0",
 							"text-rotation": "0",
 							"text-shadow-offset": "1, 1",
-							"title": "Error (1): Unable to load library",
+							"title": "test1",
 							"transparent": "false",
 							"value-precision": "2",
 							"wants-focus": "false",

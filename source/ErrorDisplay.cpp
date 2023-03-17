@@ -4,16 +4,10 @@
 using namespace std;
 
 namespace OpenVpi {
-    void ErrorDisplay::setView(VSTGUI::VST3Editor *view) {
-        this->view = view;
-    }
-    bool ErrorDisplay::hasView() {
-        return this->view != nullptr;
-    }
-    bool ErrorDisplay::showError(ErrorType errorType) {
-        if(!this->hasView()) return false;
-        string viewName = "err";
-        viewName += to_string(errorType);
-        return this->view->exchangeView(viewName.c_str());
+    MyTextController* ErrorDisplay::myTextController = nullptr;
+    void ErrorDisplay::showError(const char *errorMessage) {
+        if(ErrorDisplay::myTextController) {
+            ErrorDisplay::myTextController->setText(errorMessage);
+        }
     }
 } // OpenVpi

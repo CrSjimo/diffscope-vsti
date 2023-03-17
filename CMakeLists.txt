@@ -36,6 +36,12 @@ smtg_add_vst3plugin(Diffscope_VSTi
     source/ErrorDisplay.h
     source/libraryloader.cpp
     source/libraryloader.h
+    source/MyPluginEditor.h
+    source/MyPluginEditor.cpp
+    source/MyButtonController.h
+    source/MyButtonController.cpp
+    source/MyTextController.h
+    source/MyTextController.cpp
 )
 
 target_link_libraries(Diffscope_VSTi PRIVATE loadso)
