@@ -22,16 +22,15 @@ namespace OpenVpi {
     }
 
     void Api::destroyInstance() {
-        if(instance) {
-            delete instance;
-        }
+        delete instance;
+        instance = nullptr;
     }
 
-    void Api::addHandle(std::string name, void* handle) {
+    void Api::addHandle(const std::string& name, void* handle) {
         this->apiHandlesDict->insert(map<string, void*>::value_type(name, handle));
     }
 
-    void* Api::getHandle(std::string name) {
+    void* Api::getHandle(const std::string& name) {
         auto handleIter = this->apiHandlesDict->find(name);
         if(handleIter == this->apiHandlesDict->end()) return nullptr;
         else return handleIter->second;
@@ -41,7 +40,7 @@ namespace OpenVpi {
         this->initializationState = state;
     }
 
-    bool Api::getInitializationState() {
+    bool Api::getInitializationState() const {
         return this->initializationState;
     }
 } // OpenVpi

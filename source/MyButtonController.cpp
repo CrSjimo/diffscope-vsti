@@ -13,13 +13,17 @@ namespace OpenVpi {
         auto* button = dynamic_cast<CMovieButton*>(view);
         if(button) {
             button->registerControlListener(this);
+            this->button = button;
             return button;
         }
         return nullptr;
     }
 
+    MyButtonController::~MyButtonController() noexcept {
+        button->unregisterControlListener(this);
+    }
+
     void MyButtonController::valueChanged(CControl *pControl) {
-        // TODO: Show editor window
-        ErrorDisplay::getInstance()->showError("Show editor window");
+        showEditorWindow();
     }
 } // OpenVpi

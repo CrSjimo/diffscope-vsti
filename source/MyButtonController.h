@@ -9,7 +9,10 @@ namespace OpenVpi {
 class MyButtonController: public VSTGUI::IController {
 public:
     VSTGUI::CView * verifyView(VSTGUI::CView *view, const VSTGUI::UIAttributes &attributes, const VSTGUI::IUIDescription *description) override;
+    ~MyButtonController();
     void valueChanged (VSTGUI::CControl* pControl) override;
+protected:
+    VSTGUI::CMovieButton* button;
 };
 
 } // OpenVpi

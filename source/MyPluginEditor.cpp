@@ -17,9 +17,7 @@ namespace OpenVpi {
     }
 
     MyPluginEditor::~MyPluginEditor() {
-        //delete myTextController;
-        //delete myButtonController;
-        //VST3Editor::~VST3Editor();
+        ErrorDisplay::getInstance()->removeTextController();
     }
 
     VSTGUI::IController * MyPluginEditor::createSubController(VSTGUI::UTF8StringPtr name, const VSTGUI::IUIDescription *description) {
@@ -34,10 +32,12 @@ namespace OpenVpi {
     }
 
     bool MyPluginEditor::open(void *parent, const VSTGUI::PlatformType &type) {
+        showEditorWindow();
         return VST3Editor::open(parent, type);
     }
 
     void MyPluginEditor::close() {
+        hideEditorWindow();
         VST3Editor::close();
     }
 } // OpenVpi

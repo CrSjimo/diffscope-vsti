@@ -11,6 +11,7 @@ namespace OpenVpi {
         if(myTextController) {
             myTextController->setText(errorMessage);
         }
+        stagedText = errorMessage;
     }
 
     ErrorDisplay *ErrorDisplay::getInstance() {
@@ -24,6 +25,7 @@ namespace OpenVpi {
     void ErrorDisplay::destroyInstance() {
         if(instance) {
             delete instance;
+            instance = nullptr;
         }
     }
 
@@ -33,5 +35,9 @@ namespace OpenVpi {
 
     void ErrorDisplay::setTextController(MyTextController *textController) {
         this->myTextController = textController;
+    }
+
+    void ErrorDisplay::removeTextController() {
+        this->myTextController = nullptr;
     }
 } // OpenVpi

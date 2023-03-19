@@ -105,7 +105,6 @@ tresult PLUGIN_API DiffscopeVstiPluginProcessor::process (Vst::ProcessData& data
 	}*/
 	
 	//--- Here you have to implement your processing
-
 	return processPlayback(data.processContext, data.numOutputs, data.outputs, data.numSamples);
 
 }
@@ -137,9 +136,7 @@ tresult PLUGIN_API DiffscopeVstiPluginProcessor::setState (IBStream* state)
 	// called when we load a preset, the model has to be reloaded
 	IBStreamer streamer (state, kLittleEndian);
     uint64_t size;
-    if(!streamer.readInt64u(size)) { // Storage is empty
-        return kResultOk;
-    }
+    streamer.readInt64u(size);
     auto* data = new uint8_t[size];
     if(streamer.readRaw(data, size) != size) {
         ErrorDisplay::getInstance()->showError(ERR_SET_STATE);
@@ -166,6 +163,9 @@ tresult PLUGIN_API DiffscopeVstiPluginProcessor::getState (IBStream* state)
     if(bridgeResult != kResultOk) {
         freeData(data);
         return bridgeResult;
+    }
+    if(!size) {
+        return kResultOk;
     }
     if(!streamer.writeInt64u(size) || streamer.writeRaw(data, size) != size) {
         ErrorDisplay::getInstance()->showError(ERR_GET_STATE);
