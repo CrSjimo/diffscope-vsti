@@ -2,7 +2,7 @@
 
 #include <fstream>
 #include <locale>
-#include <sstream>
+#include <streambuf>
 
 #include <loadso/library.h>
 #include <loadso/system.h>
@@ -11,13 +11,13 @@
 
 #include "Api.h"
 #include "ErrorDisplay.h"
-#define ADD_HANDLE(name, lib) \
-{\
-    auto handle = lib.entry(#name);\
-    if(!handle)\
-        return false; \
-    OV_API_SET(name, handle);\
-}
+#define ADD_HANDLE(name, lib)                                                                                          \
+    {                                                                                                                  \
+        auto handle = lib.entry(#name);                                                                                \
+        if (!handle)                                                                                                   \
+            return false;                                                                                              \
+        OV_API_SET(name, handle);                                                                                      \
+    }
 
 using namespace std;
 using namespace LoadSO;
@@ -32,22 +32,23 @@ namespace OpenVpi {
         static PathString configPath() {
             return
 #ifdef _WIN32
-                LOADSO_STR("C:\\Users\\Crs_1\\AppData\\Local\\ChorusKit\\DiffScope\\vstconfig.txt") // TODO
+                LOADSO_STR("D:\\dstest\\vstconfig.txt") // TODO
 #elif __linux__
                 LOADSO_STR("~/.local/share/ChorusKit/DiffScope/vstconfig.txt")
 #else
                 LOADSO_STR("~/Library/Application Support/ChorusKit/DiffScope/vstconfig.txt")
 #endif
-                    ;
+                ;
         }
     };
 
-    LibraryLoader::LibraryLoader() : d(std::make_unique<LibraryLoaderPrivate>()) {}
+    LibraryLoader::LibraryLoader() : d(std::make_unique<LibraryLoaderPrivate>()) {
+    }
 
     LibraryLoader *LibraryLoader::instance = nullptr;
 
     LibraryLoader *LibraryLoader::getInstance() {
-        if(!instance) {
+        if (!instance) {
             return instance = new LibraryLoader;
         } else {
             return instance;
@@ -61,24 +62,17 @@ namespace OpenVpi {
 
     bool LibraryLoader::loadConfig() {
         auto path = d->configPath();
-#ifdef _WIN32
-        std::wfstream
-#else
-        std::fstream
-#endif
-                fs;
+
+        std::fstream fs;
 
         // Read configuration
-        fs.open(path, std::ios::in);
+        fs.open(path, std::ios::in | std::ios::binary);
         if (fs.fail()) {
             return false;
         }
 
-        std::stringstream ss;
-        ss << fs.rdbuf();
-
-        std::string content;
-        ss >> content;
+        std::string content((std::istreambuf_iterator<char>(fs)), std::istreambuf_iterator<char>());
+        fs.close();
 
         // Trim path
         while (content.size() && (content.back() == '\n' || content.back() == '\r')) {
@@ -95,7 +89,7 @@ namespace OpenVpi {
     }
 
     bool LibraryLoader::loadLibrary() {
-        //MessageBoxW(nullptr, dllPath.c_str(), L"DiffScope VSTi", MB_OK);
+        // MessageBoxW(nullptr, dllPath.c_str(), L"DiffScope VSTi", MB_OK);
         if (!d->lib.open(dllPath)) {
             return false;
         }
