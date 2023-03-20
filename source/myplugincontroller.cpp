@@ -14,6 +14,8 @@ namespace OpenVpi {
 //------------------------------------------------------------------------
 // DiffscopeVstiPluginController Implementation
 //------------------------------------------------------------------------
+IPtr<IComponentHandler2> *globalComponentHandler2 = nullptr;
+
 tresult PLUGIN_API DiffscopeVstiPluginController::initialize (FUnknown* context)
 {
 	// Here the Plug-in will be instantiated
@@ -26,8 +28,13 @@ tresult PLUGIN_API DiffscopeVstiPluginController::initialize (FUnknown* context)
 	}
 
 	// Here you could register some parameters
+    globalComponentHandler2 = &componentHandler2;
 
-    OpenVpi::initialize();
+    OpenVpi::initialize([](bool state){
+        if (globalComponentHandler2 && globalComponentHandler2->get()){
+            (*globalComponentHandler2)->setDirty (state);
+        }
+    });
 
 	return result;
 }

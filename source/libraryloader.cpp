@@ -102,6 +102,7 @@ namespace OpenVpi {
         ADD_HANDLE(StateChangedCallback, d->lib)
         ADD_HANDLE(StateWillSaveCallback, d->lib)
         ADD_HANDLE(StateSavedAsyncCallback, d->lib)
+        ADD_HANDLE(DirtySetterBinder, d->lib)
         return true;
     }
 

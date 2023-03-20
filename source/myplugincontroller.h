@@ -50,6 +50,7 @@ public:
 	END_DEFINE_INTERFACES (EditController)
     DELEGATE_REFCOUNT (EditController)
 
+
 //------------------------------------------------------------------------
 protected:
 };

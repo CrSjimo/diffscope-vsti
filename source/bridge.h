@@ -13,7 +13,7 @@ namespace OpenVpi {
     tresult putData(uint64_t size, const uint8_t* data);
     tresult saveData(uint64_t& size, uint8_t*& data);
     tresult freeData(uint8_t* data);
-    void initialize();
+    void initialize(void (*setDirty)(bool));
     void terminate();
     void showEditorWindow();
     void hideEditorWindow();

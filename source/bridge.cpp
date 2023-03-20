@@ -35,6 +35,7 @@ namespace OpenVpi {
             }
         }
         delete[] myOutputs;
+        ErrorDisplay::getInstance()->showError("");
         return kResultOk;
     }
 
@@ -49,6 +50,7 @@ namespace OpenVpi {
             ErrorDisplay::getInstance()->showError(ERR_SET_STATE);
             return kInternalError;
         }
+        ErrorDisplay::getInstance()->showError("");
         return kResultOk;
     }
 
@@ -63,6 +65,7 @@ namespace OpenVpi {
             ErrorDisplay::getInstance()->showError(ERR_GET_STATE);
             return kInternalError;
         }
+        ErrorDisplay::getInstance()->showError("");
         return kResultOk;
     }
 
@@ -74,10 +77,11 @@ namespace OpenVpi {
             return kNoInterface;
         }
         stateSavedAsyncCallback(data);
+        ErrorDisplay::getInstance()->showError("");
         return kResultOk;
     }
 
-    void initialize() {
+    void initialize(void (*setDirty)(bool)) {
         if(!LibraryLoader::getInstance()->loadConfig()) {
             ErrorDisplay::getInstance()->showError(ERR_LOAD_CONFIG);
             return;
@@ -105,6 +109,12 @@ namespace OpenVpi {
             ErrorDisplay::getInstance()->showError(ERR_INITIALIZATION);
             return;
         }
+        auto dirtySetterBinder = OV_API_CALL(DirtySetterBinder);
+        if(!dirtySetterBinder) {
+            ErrorDisplay::getInstance()->showError(ERR_INITIALIZATION);
+            return;
+        }
+        dirtySetterBinder(setDirty);
         Api::getInstance()->setInitializationState(true);
     }
 
@@ -122,6 +132,7 @@ namespace OpenVpi {
             return;
         }
         windowOpener();
+        ErrorDisplay::getInstance()->showError("");
     }
 
     void hideEditorWindow() {
@@ -132,5 +143,6 @@ namespace OpenVpi {
             return;
         }
         windowCloser();
+        ErrorDisplay::getInstance()->showError("");
     }
 }
