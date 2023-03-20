@@ -22,7 +22,6 @@ namespace OpenVpi {
                 .barPositionMusic = processContext->barPositionMusic,
                 .numSamples = numSamples,
         };
-        if(!isPlaying) playbackParameters.systemTimeMs = processContext->systemTime / 1000000;
         auto** myOutputs = new Sample32*[numOutputs];
         for(int i = 0; i < numOutputs; i++) myOutputs[i] = outputs[i].channelBuffers32[0];
         if(playbackProcessor(&playbackParameters, isPlaying, numOutputs, myOutputs) == Failed) {
