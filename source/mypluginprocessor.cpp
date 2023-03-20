@@ -9,6 +9,7 @@
 #include "pluginterfaces/vst/ivstparameterchanges.h"
 #include "bridge.h"
 #include "Api.h"
+#include "libraryloader.h"
 
 using namespace Steinberg;
 
@@ -71,6 +72,7 @@ tresult PLUGIN_API DiffscopeVstiPluginProcessor::terminate ()
     OpenVpi::terminate();
     Api::destroyInstance();
     ErrorDisplay::destroyInstance();
+    LibraryLoader::destroyInstance();
 	//---do not forget to call parent ------
 	return AudioEffect::terminate ();
 }

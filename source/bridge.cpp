@@ -7,20 +7,13 @@ using namespace std;
 
 namespace OpenVpi {
     tresult processPlayback(const ProcessContext *processContext, int32 numOutputs, AudioBusBuffers *outputs, int32 numSamples) {
-        if(!(processContext->state & ProcessContext::kPlaying)) {
-            for(int busId = 0; busId < numOutputs; busId++) {
-                for(int channelId = 0; channelId < outputs[busId].numChannels; channelId++) {
-                    memset(outputs[busId].channelBuffers32[channelId], 0, numSamples * sizeof(Sample32));
-                }
-            }
-            return kResultOk;
-        }
         if(!Api::getInstance()->getInitializationState()) return kNotInitialized;
         auto playbackProcessor = OV_API_CALL(PlaybackProcessor);
         if(!playbackProcessor) {
             ErrorDisplay::getInstance()->showError(ERR_PLAYBACK);
             return kNoInterface;
         }
+        bool isPlaying = (processContext->state & ProcessContext::kPlaying) != 0;
         PlaybackParameters playbackParameters = {
                 .sampleRate = processContext->sampleRate,
                 .tempo = processContext->tempo,
@@ -29,9 +22,10 @@ namespace OpenVpi {
                 .barPositionMusic = processContext->barPositionMusic,
                 .numSamples = numSamples,
         };
+        if(!isPlaying) playbackParameters.systemTimeMs = processContext->systemTime / 1000000;
         auto** myOutputs = new Sample32*[numOutputs];
         for(int i = 0; i < numOutputs; i++) myOutputs[i] = outputs[i].channelBuffers32[0];
-        if(playbackProcessor(&playbackParameters, numOutputs, myOutputs) == Failed) {
+        if(playbackProcessor(&playbackParameters, isPlaying, numOutputs, myOutputs) == Failed) {
             ErrorDisplay::getInstance()->showError(ERR_PLAYBACK);
             return kInternalError;
         }
@@ -115,7 +109,6 @@ namespace OpenVpi {
     }
 
     void terminate() {
-        if(!Api::getInstance()->getInitializationState()) return;
         auto terminator = OV_API_CALL(Terminator);
         if(!terminator) return;
         if(terminator() == Failed) return;

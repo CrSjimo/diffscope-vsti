@@ -23,7 +23,10 @@ namespace OpenVpi {
         double sampleRate;
         double tempo;
 
-        int64_t projectTimeSamples;
+        union {
+            int64_t projectTimeSamples;
+            int64_t systemTimeMs;
+        };
         double projectTimeMusic;
         double barPositionMusic;
 
@@ -36,7 +39,7 @@ namespace OpenVpi {
     OV_API_DEF(Terminator, Result (*)())
     OV_API_DEF(WindowOpener, void (*)())
     OV_API_DEF(WindowCloser, void (*)())
-    OV_API_DEF(PlaybackProcessor, Result (*)(const PlaybackParameters *playbackParameters, int32_t numOutputs, float *const * outputs)) // outputs[busId][sampleId]
+    OV_API_DEF(PlaybackProcessor, Result (*)(const PlaybackParameters *playbackParameters, bool isPlaying, int32_t numOutputs, float *const * outputs)) // outputs[busId][sampleId]
     OV_API_DEF(StateChangedCallback, Result (*)(uint64_t size, const uint8_t* data))
     OV_API_DEF(StateWillSaveCallback, Result (*)(uint64_t & size, uint8_t * & data))
     OV_API_DEF(StateSavedAsyncCallback, void (*)(uint8_t * dataToFree))

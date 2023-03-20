@@ -9,7 +9,7 @@
 
 #include "public.sdk/source/main/pluginfactory.h"
 
-#define stringPluginName "Diffscope VSTi"
+#define stringPluginName "DiffScope VSTi"
 
 using namespace Steinberg::Vst;
 using namespace OpenVpi;
