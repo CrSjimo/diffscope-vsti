@@ -1,7 +1,6 @@
 #include "bridge.h"
 #include "Api.h"
 #include "libraryloader.h"
-#include <fstream>
 
 using namespace std;
 
@@ -16,22 +15,14 @@ namespace OpenVpi {
         bool isPlaying = (processContext->state & ProcessContext::kPlaying) != 0;
         PlaybackParameters playbackParameters = {
                 .sampleRate = processContext->sampleRate,
-                .tempo = processContext->tempo,
                 .projectTimeSamples = processContext->projectTimeSamples,
-                .projectTimeMusic = processContext->projectTimeMusic,
-                .barPositionMusic = processContext->barPositionMusic,
                 .numSamples = numSamples,
         };
-        auto** myOutputs = new Sample32*[numOutputs];
-        for(int i = 0; i < numOutputs; i++) myOutputs[i] = outputs[i].channelBuffers32[0];
-        if(playbackProcessor(&playbackParameters, isPlaying, numOutputs, myOutputs) == Failed) {
+        auto*** myOutputs = new Sample32**[numOutputs];
+        for(int i = 0; i < numOutputs; i++) myOutputs[i] = outputs[i].channelBuffers32;
+        if(!playbackProcessor(&playbackParameters, isPlaying, numOutputs, myOutputs)) {
             ErrorDisplay::getInstance()->showError(ERR_PLAYBACK);
             return kInternalError;
-        }
-        for(int busId = 0; busId < numOutputs; busId++) {
-            for(int channelId = 1; channelId < outputs[busId].numChannels; channelId++) {
-                memcpy_s(outputs[busId].channelBuffers32[channelId], numSamples * sizeof(Sample32), outputs[busId].channelBuffers32[0], numSamples * sizeof(Sample32));
-            }
         }
         delete[] myOutputs;
         ErrorDisplay::getInstance()->showError("");
@@ -45,7 +36,7 @@ namespace OpenVpi {
             ErrorDisplay::getInstance()->showError(ERR_SET_STATE);
             return kNoInterface;
         }
-        if(stateChangedCallback(size, data) == Failed) {
+        if(!stateChangedCallback(size, data)) {
             ErrorDisplay::getInstance()->showError(ERR_SET_STATE);
             return kInternalError;
         }
@@ -60,7 +51,7 @@ namespace OpenVpi {
             ErrorDisplay::getInstance()->showError(ERR_GET_STATE);
             return kNoInterface;
         }
-        if(stateWillSaveCallback(size, data) == Failed) {
+        if(!stateWillSaveCallback(size, data)) {
             ErrorDisplay::getInstance()->showError(ERR_GET_STATE);
             return kInternalError;
         }
@@ -104,7 +95,7 @@ namespace OpenVpi {
             ErrorDisplay::getInstance()->showError(ERR_INITIALIZATION);
             return;
         }
-        if(initializer() == Failed) {
+        if(!initializer()) {
             ErrorDisplay::getInstance()->showError(ERR_INITIALIZATION);
             return;
         }
@@ -120,7 +111,7 @@ namespace OpenVpi {
     void terminate() {
         auto terminator = OV_API_CALL(Terminator);
         if(!terminator) return;
-        if(terminator() == Failed) return;
+        if(!terminator()) return;
     }
 
     void showEditorWindow() {
