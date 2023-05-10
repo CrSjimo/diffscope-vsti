@@ -89,10 +89,12 @@ namespace OpenVpi {
     }
 
     bool LibraryLoader::loadLibrary() {
-        // MessageBoxW(nullptr, dllPath.c_str(), L"DiffScope VSTi", MB_OK);
+        auto prev = System::SetLibraryPath(L"C:\\Users\\Crs_1\\qsynthesis-revenge\\out\\out-Windows-Debug\\bin\\"); //TODO
         if (!d->lib.open(dllPath)) {
+            System::SetLibraryPath(prev);
             return false;
         }
+        System::SetLibraryPath(prev);
         ADD_HANDLE(SingletonChecker, d->lib)
         ADD_HANDLE(Initializer, d->lib)
         ADD_HANDLE(Terminator, d->lib)
@@ -103,6 +105,7 @@ namespace OpenVpi {
         ADD_HANDLE(StateWillSaveCallback, d->lib)
         ADD_HANDLE(StateSavedAsyncCallback, d->lib)
         ADD_HANDLE(DirtySetterBinder, d->lib)
+        ADD_HANDLE(ProcessInitializer, d->lib)
         return true;
     }
 

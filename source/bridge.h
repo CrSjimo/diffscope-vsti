@@ -17,4 +17,5 @@ namespace OpenVpi {
     void terminate();
     void showEditorWindow();
     void hideEditorWindow();
+    tresult setupProcess(Vst::ProcessSetup &newSetup);
 }

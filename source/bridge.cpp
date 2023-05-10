@@ -135,4 +135,19 @@ namespace OpenVpi {
         windowCloser();
         ErrorDisplay::getInstance()->showError("");
     }
+
+    tresult setupProcess(ProcessSetup &newSetup) {
+        if(!Api::getInstance()->getInitializationState()) return kNotInitialized;
+        auto processInitializer = OV_API_CALL(ProcessInitializer);
+        if(!processInitializer) {
+            ErrorDisplay::getInstance()->showError(ERR_PLAYBACK);
+            return kNoInterface;
+        }
+        if(!processInitializer(newSetup.processMode == Vst::ProcessModes::kOffline, newSetup.sampleRate)) {
+            ErrorDisplay::getInstance()->showError(ERR_PLAYBACK);
+            return kInternalError;
+        }
+        ErrorDisplay::getInstance()->showError("");
+        return kResultOk;
+    }
 }

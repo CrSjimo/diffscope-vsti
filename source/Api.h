@@ -29,6 +29,7 @@ namespace OpenVpi {
     OV_API_DEF(StateWillSaveCallback, bool (*)(uint64_t & size, uint8_t * & data))
     OV_API_DEF(StateSavedAsyncCallback, void (*)(uint8_t * dataToFree))
     OV_API_DEF(DirtySetterBinder, void (*)(void (*setDirty)(bool state)))
+    OV_API_DEF(ProcessInitializer, bool(*)(bool isOffline, double sampleRate))
 
     class Api {
     public:

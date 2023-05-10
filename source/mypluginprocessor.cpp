@@ -116,10 +116,7 @@ tresult PLUGIN_API DiffscopeVstiPluginProcessor::process (Vst::ProcessData& data
 tresult PLUGIN_API DiffscopeVstiPluginProcessor::setupProcessing (Vst::ProcessSetup& newSetup)
 {
 	//--- called before any processing ----
-    std::ofstream f;
-    f.open("C:\\Users\\Crs_1\\2.test", std::ios::out);
-    f << newSetup.maxSamplesPerBlock << std::endl;
-    f.close();
+    setupProcess(newSetup);
 	return AudioEffect::setupProcessing (newSetup);
 }
 
