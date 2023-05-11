@@ -20,6 +20,7 @@ namespace OpenVpi {
         ~LibraryLoader();
         std::unique_ptr<LibraryLoaderPrivate> d;
         LoadSO::PathString dllPath;
+        LoadSO::PathString libraryDirPath;
         static LibraryLoader* instance;
     };
 

@@ -6,8 +6,12 @@
 
 #include <loadso/library.h>
 #include <loadso/system.h>
+
+#ifdef _WIN32
 #define NOMINMAX
 #include <Windows.h>
+#include <shlobj.h>
+#endif
 
 #include "Api.h"
 #include "ErrorDisplay.h"
@@ -30,15 +34,20 @@ namespace OpenVpi {
         Library lib;
 
         static PathString configPath() {
-            return
 #ifdef _WIN32
-                LOADSO_STR("D:\\dstest\\vstconfig.txt") // TODO
+            PWSTR appDataPath;
+            if (SUCCEEDED(SHGetKnownFolderPath(FOLDERID_RoamingAppData, 0, NULL, &appDataPath))) {
+                PathString filePath = appDataPath;
+                filePath += L"\\ChorusKit\\DiffScope\\vstconfig.txt";
+                CoTaskMemFree(appDataPath);
+                return filePath;
+            }
+            return L"";
 #elif __linux__
-                LOADSO_STR("~/.local/share/ChorusKit/DiffScope/vstconfig.txt")
+            return LOADSO_STR("~/.local/share/ChorusKit/DiffScope/vstconfig.txt");
 #else
-                LOADSO_STR("~/Library/Application Support/ChorusKit/DiffScope/vstconfig.txt")
+            return LOADSO_STR("~/Library/Application Support/ChorusKit/DiffScope/vstconfig.txt");
 #endif
-                ;
         }
     };
 
@@ -66,21 +75,28 @@ namespace OpenVpi {
         std::fstream fs;
 
         // Read configuration
-        fs.open(path, std::ios::in | std::ios::binary);
+        fs.open(path, std::ios::in);
         if (fs.fail()) {
             return false;
         }
 
-        std::string content((std::istreambuf_iterator<char>(fs)), std::istreambuf_iterator<char>());
-        fs.close();
-
-        // Trim path
-        while (content.size() && (content.back() == '\n' || content.back() == '\r')) {
-            content.pop_back();
+        string dir;
+        fs >> dir;
+        if(dir.empty()) return false;
+        while (dir.size() && (dir.back() == '\n' || dir.back() == '\r')) {
+            dir.pop_back();
         }
-
+        //MessageBoxA(nullptr, dir.c_str(), "111", MB_OK);
+        string fileName;
+        fs >> fileName;
+        if(fileName.empty()) return false;
+        while (fileName.size() && (fileName.back() == '\n' || fileName.back() == '\r')) {
+            fileName.pop_back();
+        }
+        //MessageBoxA(nullptr, (dir+fileName).c_str(), "111", MB_OK);
         // Load library
-        dllPath = System::MultiToWide(content);
+        dllPath = System::MultiToWide(dir + fileName);
+        libraryDirPath = System::MultiToWide(dir);
         return true;
     }
 
@@ -89,7 +105,7 @@ namespace OpenVpi {
     }
 
     bool LibraryLoader::loadLibrary() {
-        auto prev = System::SetLibraryPath(L"C:\\Users\\Crs_1\\qsynthesis-revenge\\out\\out-Windows-Debug\\bin\\"); //TODO
+        auto prev = System::SetLibraryPath(libraryDirPath); //TODO
         if (!d->lib.open(dllPath)) {
             System::SetLibraryPath(prev);
             return false;
