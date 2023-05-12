@@ -143,7 +143,7 @@ namespace OpenVpi {
             ErrorDisplay::getInstance()->showError(ERR_PLAYBACK);
             return kNoInterface;
         }
-        if(!processInitializer(newSetup.processMode == Vst::ProcessModes::kOffline, newSetup.sampleRate)) {
+        if(!processInitializer(newSetup.processMode == Vst::ProcessModes::kOffline, newSetup.maxSamplesPerBlock, newSetup.sampleRate)) {
             ErrorDisplay::getInstance()->showError(ERR_PLAYBACK);
             return kInternalError;
         }
