@@ -147,7 +147,15 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
 {
     juce::ignoreUnused (midiMessages);
 
-    juce::AudioPlayHead::PositionInfo positionInfo;
+    auto position = getPlayHead()->getPosition();
+    int64_t timeInSamples = 0;
+    bool isPlaying = false;
+    bool isRealtime = true;
+    if(position.hasValue()) {
+        timeInSamples = position->getTimeInSamples().orFallback(0);
+        isPlaying = position->getIsPlaying() || position->getIsRecording();
+        isRealtime = !isNonRealtime();
+    }
 
     juce::ScopedNoDenormals noDenormals;
     auto totalNumOutputChannels = getTotalNumOutputChannels();
@@ -167,12 +175,7 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
-    for (int channel = 0; channel < totalNumOutputChannels; ++channel)
-    {
-        auto* channelData = buffer.getWritePointer (channel);
-        juce::ignoreUnused (channelData);
-        // ..do something to the data...
-    }
+    processPlayback(buffer, timeInSamples, totalNumOutputChannels, isRealtime, isPlaying);
 }
 
 //==============================================================================

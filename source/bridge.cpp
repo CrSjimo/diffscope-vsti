@@ -76,26 +76,17 @@ namespace OpenVpi {
             EditorHelper::setError(errorMessage);
             return;
         }
-//        auto singletonChecker = OV_API_CALL(SingletonChecker);
-//        if(!singletonChecker) {
-//            ErrorDisplay::getInstance()->showError(ERR_INITIALIZATION);
-//            return;
-//        }
-//        if(!singletonChecker()) {
-//            ErrorDisplay::getInstance()->showError(ERR_SINGLETON);
-//            return;
-//        }
         auto callbacksBinder = OV_API_CALL(CallbacksBinder);
         Callbacks callbacks = {
-                .setDirty = [](){
-                    EditorHelper::setDirty();
-                },
-                .setError = [](const char *error) {
-                    EditorHelper::setError(error);
-                },
-                .setStatus = [](const char *status) {
-                    EditorHelper::setStatus(status);
-                },
+            .setDirty = [](){
+                EditorHelper::setDirty();
+            },
+            .setError = [](const char *error) {
+                EditorHelper::setError(error);
+            },
+            .setStatus = [](const char *status) {
+                EditorHelper::setStatus(status);
+            },
         };
         callbacksBinder(callbacks);
         auto initializer = OV_API_CALL(Initializer);

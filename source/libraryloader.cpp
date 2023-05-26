@@ -82,14 +82,14 @@ namespace OpenVpi {
         string dir;
         fs >> dir;
         if(dir.empty()) return false;
-        while (dir.size() && (dir.back() == '\n' || dir.back() == '\r')) {
+        while (!dir.empty() && (dir.back() == '\n' || dir.back() == '\r')) {
             dir.pop_back();
         }
 //        MessageBoxA(nullptr, dir.c_str(), "111", MB_OK);
         string fileName;
         fs >> fileName;
         if(fileName.empty()) return false;
-        while (fileName.size() && (fileName.back() == '\n' || fileName.back() == '\r')) {
+        while (!fileName.empty() && (fileName.back() == '\n' || fileName.back() == '\r')) {
             fileName.pop_back();
         }
         //MessageBoxA(nullptr, (dir+fileName).c_str(), "111", MB_OK);
