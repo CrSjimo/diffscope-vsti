@@ -1,9 +1,8 @@
-//
-// Created by Crs_1 on 2023/5/26.
-//
-
 #ifndef AUDIO_PLUGIN_EXAMPLE_PARAMETERTYPES_H
 #define AUDIO_PLUGIN_EXAMPLE_PARAMETERTYPES_H
+
+#include <cstdint>
+
 namespace OpenVpi {
 
     struct PlaybackParameters {

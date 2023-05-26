@@ -19,7 +19,7 @@ namespace OpenVpi {
     OV_API_DEF(WindowOpener, void (*)())
     OV_API_DEF(WindowCloser, void (*)())
     OV_API_DEF(PlaybackProcessor, bool (*)(const PlaybackParameters &parameters, float *const *const * outputs))
-    OV_API_DEF(StateChangedCallback, bool (*)(uint64_t size, const uint8_t *data))
+    OV_API_DEF(StateChangedCallback, void (*)(uint64_t size, const uint8_t *data))
     OV_API_DEF(StateWillSaveCallback, bool (*)(uint64_t &size, const uint8_t *&data))
     OV_API_DEF(StateSavedAsyncCallback, void (*)(const uint8_t * dataToFree))
     OV_API_DEF(CallbacksBinder, void (*)(const Callbacks &callbacks))

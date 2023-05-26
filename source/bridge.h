@@ -8,7 +8,7 @@
 
 namespace OpenVpi {
 	bool processPlayback(juce::AudioBuffer<float> &buffer, int64_t timeInSamples, int32_t totalNumOutputChannels, bool isRealtime, bool isPlaying);
-    bool loadData(uint64_t size, const uint8_t* data);
+    void loadData(uint64_t size, const uint8_t* data);
     bool saveData(uint64_t& size, const uint8_t*& data);
     void freeDataBuffer(const uint8_t* data);
     void initialize();

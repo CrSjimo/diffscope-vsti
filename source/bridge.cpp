@@ -33,16 +33,13 @@ namespace OpenVpi {
         return true;
     }
 
-    bool loadData(uint64_t size, const uint8_t* data) {
-        if(!Api::getInstance()->getInitializationState()) return false;
+    void loadData(uint64_t size, const uint8_t* data) {
+        if(!Api::getInstance()->getInitializationState()) return;
         auto stateChangedCallback = OV_API_CALL(StateChangedCallback);
         if(!stateChangedCallback) {
-            return false;
+            return;
         }
-        if(!stateChangedCallback(size, data)) {
-            return false;
-        }
-        return true;
+        stateChangedCallback(size, data);
     }
 
     bool saveData(uint64_t& size, const uint8_t*& data) {
@@ -117,6 +114,7 @@ namespace OpenVpi {
         if(!Api::getInstance()->getInitializationState()) return false;
         auto processInitializer = OV_API_CALL(ProcessInitializer);
         if(!processInitializer(totalNumOutputChannels, maxBlockSize, sampleRate)) {
+            myOutputs = nullptr;
             goto finalize;
         }
         myOutputs = new float**[totalNumOutputChannels / 2];
@@ -134,7 +132,6 @@ namespace OpenVpi {
                 delete[] oldMyOutput[i];
             }
             delete[] oldMyOutput;
-            oldMyOutput = nullptr;
         }
         return success;
     }
