@@ -16,6 +16,8 @@ public:
     void setStatus(const juce::String &status);
     void setError(const juce::String &error);
 
+    void mouseDoubleClick(const juce::MouseEvent &event) override;
+
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.

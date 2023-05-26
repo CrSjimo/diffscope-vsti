@@ -16,6 +16,8 @@ cmake_minimum_required(VERSION 3.15)
 
 project(AUDIO_PLUGIN_EXAMPLE VERSION 0.0.1)
 
+include(scripts/functions.cmake)
+
 # If you've installed JUCE somehow (via a package manager, or directly using the CMake install
 # target), you'll need to tell this project that it depends on the installed copy of JUCE. If you've
 # included JUCE directly in your source tree (perhaps as a submodule), you'll need to tell CMake to
@@ -24,6 +26,7 @@ project(AUDIO_PLUGIN_EXAMPLE VERSION 0.0.1)
 # find_package(JUCE CONFIG REQUIRED)        # If you've installed JUCE to your system
 # or
 add_subdirectory(JUCE)                    # If you've put JUCE in a subdirectory called JUCE
+add_subdirectory(libraries)
 
 # If you are building a VST2 or AAX plugin, CMake needs to be told where to find these SDKs on your
 # system. This setup should be done before calling `juce_add_plugin`.
@@ -67,10 +70,16 @@ juce_add_plugin(AudioPluginExample
 # Finally, we supply a list of source files that will be built into the target. This is a standard
 # CMake command.
 
+ck_add_files(_src
+    PATTERNS *.cpp
+    DIRS source
+)
+
+set_target_properties(AudioPluginExample PROPERTIES CXX_STANDARD 20)
+
 target_sources(AudioPluginExample
-    PRIVATE
-        PluginEditor.cpp
-        PluginProcessor.cpp)
+    PRIVATE ${_src}
+)
 
 # `target_compile_definitions` adds some preprocessor definitions to our target. In a Projucer
 # project, these might be passed in the 'Preprocessor Definitions' field. JUCE modules also make use
@@ -105,6 +114,7 @@ target_link_libraries(AudioPluginExample
     PRIVATE
         # AudioPluginData           # If we'd created a binary data target, we'd link to it here
         juce::juce_audio_utils
+        loadso
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags
