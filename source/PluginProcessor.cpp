@@ -108,7 +108,8 @@ void AudioPluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
-    juce::ignoreUnused (sampleRate, samplesPerBlock);\
+    juce::ignoreUnused (sampleRate, samplesPerBlock);
+    setupProcess(getTotalNumOutputChannels(), sampleRate, samplesPerBlock);
     std::cerr << "Processor: prepare to play" << std::endl;
 }
 
@@ -142,6 +143,13 @@ bool AudioPluginAudioProcessor::isBusesLayoutSupported (const BusesLayout& layou
   #endif
 }
 
+static void sineWave(double sampleRate, int position, int size, float *buf) {
+    double freq = 440 / sampleRate;
+    for (int x = 0; x < size; x++) {
+        buf[x] = ::sin(2 * 3.14159265358979323846 * freq * (position + x));
+    }
+}
+
 void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
                                               juce::MidiBuffer& midiMessages)
 {
@@ -159,7 +167,6 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
 
     juce::ScopedNoDenormals noDenormals;
     auto totalNumOutputChannels = getTotalNumOutputChannels();
-
     // In case we have more outputs than inputs, this code clears any output
     // channels that didn't contain input data, (because these aren't
     // guaranteed to be empty - they may contain garbage).
