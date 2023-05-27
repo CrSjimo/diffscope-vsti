@@ -18,6 +18,7 @@ namespace LoadSO {
          * @return DllHandle
          */
         bool open(const PathString &path);
+        static bool isOpen(const PathString &path);
         bool close();
 
         DllHandle handle() const;

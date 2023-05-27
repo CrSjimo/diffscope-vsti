@@ -13,8 +13,10 @@ namespace OpenVpi {
 
     void EditorHelper::setEditor(AudioPluginAudioProcessorEditor *editor) {
         m_editor = editor;
-        editor->setStatus(lazyStatus);
-        editor->setError(lazyError);
+        if(m_editor) {
+            editor->setStatus(lazyStatus);
+            editor->setError(lazyError);
+        }
     }
 
     void EditorHelper::setStatus(const std::string &status) {

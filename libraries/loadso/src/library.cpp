@@ -120,6 +120,17 @@ namespace LoadSO {
         return true;
     }
 
+    bool Library::isOpen(const PathString &path) {
+        auto handle =
+#ifdef _WIN32
+            ::GetModuleHandleW(path.data())
+#else
+            dlopen(path.data(), RTLD_NOLOAD)
+#endif
+            ;
+        return handle != NULL;
+    }
+
     bool Library::close() {
         auto handle = _impl->hDll;
         if (!handle) {

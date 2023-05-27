@@ -32,15 +32,19 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
 }
 
 void AudioPluginAudioProcessorEditor::setStatus(const juce::String &status) {
+    juce::MessageManagerLock locker;
     statusLabel.setText(juce::String("Status: ") + status, juce::dontSendNotification);
 }
 
 void AudioPluginAudioProcessorEditor::setError(const juce::String &error) {
+    juce::MessageManagerLock locker;
     errorLabel.setText(error, juce::dontSendNotification);
 }
 
 AudioPluginAudioProcessorEditor::~AudioPluginAudioProcessorEditor()
 {
+    OpenVpi::EditorHelper::setEditor(nullptr);
+    std::cerr << "Finalized: Editor" << std::endl;
 }
 
 //==============================================================================

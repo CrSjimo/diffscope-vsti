@@ -1,6 +1,9 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 #include "bridge.h"
+#include "Api.h"
+#include "libraryloader.h"
+#include "EditorHelper.h"
 
 using namespace OpenVpi;
 
@@ -36,6 +39,12 @@ AudioPluginAudioProcessor::AudioPluginAudioProcessor()
 
 AudioPluginAudioProcessor::~AudioPluginAudioProcessor()
 {
+    //TODO terminate
+    std::cerr << "Will finalize: Processor" << std::endl;
+    OpenVpi::terminate();
+    OpenVpi::Api::destroyInstance();
+    OpenVpi::LibraryLoader::destroyInstance();
+    std::cerr << "Finalized: Processor" << std::endl;
 }
 
 //==============================================================================
@@ -117,6 +126,7 @@ void AudioPluginAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
+    std::cerr << "Processor: stop playing" << std::endl;
 }
 
 bool AudioPluginAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
@@ -141,13 +151,6 @@ bool AudioPluginAudioProcessor::isBusesLayoutSupported (const BusesLayout& layou
 
     return true;
   #endif
-}
-
-static void sineWave(double sampleRate, int position, int size, float *buf) {
-    double freq = 440 / sampleRate;
-    for (int x = 0; x < size; x++) {
-        buf[x] = ::sin(2 * 3.14159265358979323846 * freq * (position + x));
-    }
 }
 
 void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,

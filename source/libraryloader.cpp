@@ -34,7 +34,8 @@ namespace OpenVpi {
 
         static PathString configPath() {
 #ifdef _WIN32
-            PWSTR appDataPath;
+
+            PWSTR appDataPath; //%AppData%\DiffScope\vstconfig.txt
             if (SUCCEEDED(SHGetKnownFolderPath(FOLDERID_RoamingAppData, 0, NULL, &appDataPath))) {
                 PathString filePath = appDataPath;
                 filePath += L"\\ChorusKit\\DiffScope\\vstconfig.txt";
@@ -42,10 +43,8 @@ namespace OpenVpi {
                 return filePath;
             }
             return L"";
-#elif __linux__
-            return LOADSO_STR("~/.local/share/ChorusKit/DiffScope/vstconfig.txt");
 #else
-            return LOADSO_STR("~/Library/Application Support/ChorusKit/DiffScope/vstconfig.txt");
+            return LOADSO_STR("~/.config/ChorusKit/DiffScope/vstconfig.txt");
 #endif
         }
     };
@@ -123,6 +122,9 @@ namespace OpenVpi {
         return true;
     }
 
+    bool LibraryLoader::isAlreadyLoaded() {
+        return Library::isOpen(dllPath);
+    }
 
 
     LibraryLoader::~LibraryLoader() = default;

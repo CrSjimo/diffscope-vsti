@@ -68,6 +68,10 @@ namespace OpenVpi {
             EditorHelper::setError("Cannot load vst config file.");
             return;
         }
+        if(LibraryLoader::getInstance()->isAlreadyLoaded()) {
+            EditorHelper::setError("Another DiffScope VSTi is already running in the same host.");
+            return;
+        }
         if(!LibraryLoader::getInstance()->loadLibrary()) {
             auto errorMessage = "Cannot load vst bridge library: " + LibraryLoader::getInstance()->getError();
             EditorHelper::setError(errorMessage);
@@ -120,15 +124,13 @@ namespace OpenVpi {
         myOutputs = new float**[totalNumOutputChannels / 2];
         for(int i = 0; i < totalNumOutputChannels / 2; i++) {
             myOutputs[i] = new float*[2];
-            myOutputs[i][0] = new float[maxBlockSize];
-            myOutputs[i][1] = new float[maxBlockSize];
+//            myOutputs[i][0] = new float[maxBlockSize];
+//            myOutputs[i][1] = new float[maxBlockSize];
         }
         success = true;
         finalize:
         if(oldMyOutput != nullptr) {
             for(int i = 0; i < totalNumOutputChannels / 2; i++) {
-                delete[] oldMyOutput[i][0];
-                delete[] oldMyOutput[i][1];
                 delete[] oldMyOutput[i];
             }
             delete[] oldMyOutput;

@@ -13,6 +13,7 @@ namespace OpenVpi {
         static LibraryLoader* getInstance();
         static void destroyInstance();
         bool loadConfig();
+        bool isAlreadyLoaded();
         bool loadLibrary();
         std::string getError();
     protected:
