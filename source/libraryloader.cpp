@@ -106,6 +106,7 @@ namespace OpenVpi {
         ADD_HANDLE(ProcessInitializer, d->lib)
         ADD_HANDLE(ProcessFinalizer, d->lib)
         ADD_HANDLE(HandleCreator, d->lib)
+        ADD_HANDLE(HandleDeleter, d->lib)
         return true;
     }
 

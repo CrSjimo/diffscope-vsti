@@ -27,6 +27,7 @@ namespace OpenVpi {
     OV_API_DEF(ProcessInitializer, bool(*)(void *h, int32_t totalNumOutputChannels, int32_t maxBufferSize, double sampleRate))
     OV_API_DEF(ProcessFinalizer, void(*)(void *h))
     OV_API_DEF(HandleCreator, void *(*)())
+    OV_API_DEF(HandleDeleter, void (*)(void *h))
 
     class Api {
     public:

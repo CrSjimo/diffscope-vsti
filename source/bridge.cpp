@@ -96,12 +96,13 @@ namespace OpenVpi {
     }
 
     void Bridge::terminate() {
-        OV_API_CHECK(void());
-        auto terminator = OV_API_CALL(Terminator);
-        terminator(m_handle);
         if(this->m_api->getInitializationState()) {
+            auto terminator = OV_API_CALL(Terminator);
+            terminator(m_handle);
             this->m_api->setInitializationState(false);
         }
+        auto handleDeleter = OV_API_CALL(HandleDeleter);
+        if(handleDeleter) handleDeleter(m_handle);
     }
 
     void Bridge::showEditorWindow() {
