@@ -5,19 +5,24 @@
 #ifndef AUDIO_PLUGIN_EXAMPLE_EDITORHELPER_H
 #define AUDIO_PLUGIN_EXAMPLE_EDITORHELPER_H
 
-#include "PluginEditor.h"
+#include <string>
+
+class AudioPluginAudioProcessorEditor;
 
 namespace OpenVpi {
 
     class EditorHelper {
         friend class ::AudioPluginAudioProcessorEditor;
-        static void setEditor(AudioPluginAudioProcessorEditor *editor);
+        void setEditor(AudioPluginAudioProcessorEditor *editor);
+        AudioPluginAudioProcessorEditor *m_editor = nullptr;
+        std::string lazyStatus = "Not Connected";
+        std::string lazyError;
     public:
-        static void setStatus(const std::string &status);
-        static void setError(const std::string &error);
-        static void setDirty();
-        static juce::String status();
-        static juce::String error();
+        void setStatus(const std::string &status);
+        void setError(const std::string &error);
+        void setDirty();
+        std::string status();
+        std::string error();
     };
 
 } // OpenVpi

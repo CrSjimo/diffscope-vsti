@@ -1,17 +1,16 @@
 #include "bridge.h"
 #include "Api.h"
 #include "libraryloader.h"
-#include "EditorHelper.h"
 
 using namespace std;
 
 namespace OpenVpi {
 
-    static float ***myOutputs = nullptr;
+    Bridge::Bridge(EditorHelper *editorHelper): m_editorHelper(editorHelper), m_api(new Api), m_libLoader(new LibraryLoader(m_api.get())) {}
 
-    bool processPlayback(juce::AudioBuffer<float> &buffer, int64_t timeInSamples, int32_t totalNumOutputChannels, bool isRealtime, bool isPlaying) {
+    bool Bridge::processPlayback(juce::AudioBuffer<float> &buffer, int64_t timeInSamples, int32_t totalNumOutputChannels, bool isRealtime, bool isPlaying) {
         if(!myOutputs) return false;
-        if(!Api::getInstance()->getInitializationState()) return false;
+        OV_API_CHECK(false);
         auto playbackProcessor = OV_API_CALL(PlaybackProcessor);
         if(!playbackProcessor) {
             return false;
@@ -27,97 +26,102 @@ namespace OpenVpi {
             myOutputs[i][0] = buffer.getWritePointer(i * 2);
             myOutputs[i][1] = buffer.getWritePointer(i * 2 + 1);
         }
-        if(!playbackProcessor(playbackParameters, myOutputs)) {
+        if(!playbackProcessor(m_handle, playbackParameters, myOutputs)) {
             return false;
         }
         return true;
     }
 
-    void loadData(uint64_t size, const uint8_t* data) {
-        if(!Api::getInstance()->getInitializationState()) return;
+    void Bridge::loadData(uint64_t size, const uint8_t* data) {
+        OV_API_CHECK(void());
         auto stateChangedCallback = OV_API_CALL(StateChangedCallback);
         if(!stateChangedCallback) {
             return;
         }
-        stateChangedCallback(size, data);
+        stateChangedCallback(m_handle, size, data);
     }
 
-    bool saveData(uint64_t& size, const uint8_t*& data) {
-        if(!Api::getInstance()->getInitializationState()) return false;
+    bool Bridge::saveData(uint64_t& size, const uint8_t*& data) {
+        OV_API_CHECK(false);
         auto stateWillSaveCallback = OV_API_CALL(StateWillSaveCallback);
         if(!stateWillSaveCallback) {
             return false;
         }
-        if(!stateWillSaveCallback(size, data)) {
+        if(!stateWillSaveCallback(m_handle, size, data)) {
             return false;
         }
         return true;
     }
 
-    void freeDataBuffer(const uint8_t* data) {
-        if(!Api::getInstance()->getInitializationState()) return;
+    void Bridge::freeDataBuffer(const uint8_t* data) {
+        OV_API_CHECK(void());
         auto stateSavedAsyncCallback = OV_API_CALL(StateSavedAsyncCallback);
         if(!stateSavedAsyncCallback) {
             return;
         }
-        stateSavedAsyncCallback(data);
+        stateSavedAsyncCallback(m_handle, data);
     }
 
-    void initialize() {
-        if(!LibraryLoader::getInstance()->loadConfig()) {
-            EditorHelper::setError("Cannot load vst config file.");
+    void Bridge::initialize() {
+        if(!m_libLoader->loadConfig()) {
+            m_editorHelper->setError("Cannot load VST config file.");
             return;
         }
-        if(LibraryLoader::getInstance()->isAlreadyLoaded()) {
-            EditorHelper::setError("Another DiffScope VSTi is already running in the same host.");
+        if(!m_libLoader->loadLibrary()) {
+            auto errorMessage = "Cannot load VST bridge library: " + m_libLoader->getError();
+            m_editorHelper->setError(errorMessage);
             return;
         }
-        if(!LibraryLoader::getInstance()->loadLibrary()) {
-            auto errorMessage = "Cannot load vst bridge library: " + LibraryLoader::getInstance()->getError();
-            EditorHelper::setError(errorMessage);
+        auto handleCreator = OV_API_CALL(HandleCreator);
+        m_handle = handleCreator();
+        if(!m_handle) {
+            m_editorHelper->setError("VST bridge failed to create handle.");
             return;
         }
         auto callbacksBinder = OV_API_CALL(CallbacksBinder);
         Callbacks callbacks = {
-            .setDirty = [](){
-                EditorHelper::setDirty();
+            .setDirty = [](void *editorHelper){
+                static_cast<EditorHelper *>(editorHelper)->setDirty();
             },
-            .setError = [](const char *error) {
-                EditorHelper::setError(error);
+            .setError = [](void *editorHelper, const char *error) {
+                static_cast<EditorHelper *>(editorHelper)->setError(error);
             },
-            .setStatus = [](const char *status) {
-                EditorHelper::setStatus(status);
+            .setStatus = [](void *editorHelper, const char *status) {
+                static_cast<EditorHelper *>(editorHelper)->setStatus(status);
             },
         };
-        callbacksBinder(callbacks);
+        callbacksBinder(m_handle, m_editorHelper, callbacks);
         auto initializer = OV_API_CALL(Initializer);
-        Api::getInstance()->setInitializationState(initializer());
+        this->m_api->setInitializationState(initializer(m_handle));
     }
 
-    void terminate() {
+    void Bridge::terminate() {
+        OV_API_CHECK(void());
         auto terminator = OV_API_CALL(Terminator);
-        terminator();
-        Api::getInstance()->setInitializationState(false);
+        terminator(m_handle);
+        if(this->m_api->getInitializationState()) {
+            this->m_api->setInitializationState(false);
+        }
     }
 
-    void showEditorWindow() {
-        if(!Api::getInstance()->getInitializationState()) return;
+    void Bridge::showEditorWindow() {
+        OV_API_CHECK(void());
         auto windowOpener = OV_API_CALL(WindowOpener);
-        windowOpener();
+        windowOpener(m_handle);
     }
 
-    void hideEditorWindow() {
-        if(!Api::getInstance()->getInitializationState()) return;
+    void Bridge::hideEditorWindow() {
+        OV_API_CHECK(void());
         auto windowCloser = OV_API_CALL(WindowCloser);
-        windowCloser();
+        windowCloser(m_handle);
     }
 
-    bool setupProcess(int32_t totalNumOutputChannels, double sampleRate, int32_t maxBlockSize) {
+    bool Bridge::setupProcess(int32_t totalNumOutputChannels, double sampleRate, int32_t maxBlockSize) {
         auto oldMyOutput = myOutputs;
         bool success = false;
-        if(!Api::getInstance()->getInitializationState()) return false;
+        OV_API_CHECK(false);
         auto processInitializer = OV_API_CALL(ProcessInitializer);
-        if(!processInitializer(totalNumOutputChannels, maxBlockSize, sampleRate)) {
+        if(!processInitializer(m_handle, totalNumOutputChannels, maxBlockSize, sampleRate)) {
             myOutputs = nullptr;
             goto finalize;
         }
@@ -136,5 +140,11 @@ namespace OpenVpi {
             delete[] oldMyOutput;
         }
         return success;
+    }
+
+    void Bridge::finalizeProcess() {
+        OV_API_CHECK(void());
+        auto processFinalizer = OV_API_CALL(ProcessFinalizer);
+        processFinalizer(m_handle);
     }
 }

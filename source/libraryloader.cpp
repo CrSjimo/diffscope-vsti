@@ -49,22 +49,7 @@ namespace OpenVpi {
         }
     };
 
-    LibraryLoader::LibraryLoader() : d(std::make_unique<LibraryLoaderPrivate>()) {
-    }
-
-    LibraryLoader *LibraryLoader::instance = nullptr;
-
-    LibraryLoader *LibraryLoader::getInstance() {
-        if (!instance) {
-            return instance = new LibraryLoader;
-        } else {
-            return instance;
-        }
-    }
-
-    void LibraryLoader::destroyInstance() {
-        delete instance;
-        instance = nullptr;
+    LibraryLoader::LibraryLoader(Api *api) : d(std::make_unique<LibraryLoaderPrivate>()), m_api(api) {
     }
 
     bool LibraryLoader::loadConfig() {
@@ -119,6 +104,8 @@ namespace OpenVpi {
         ADD_HANDLE(StateSavedAsyncCallback, d->lib)
         ADD_HANDLE(CallbacksBinder, d->lib)
         ADD_HANDLE(ProcessInitializer, d->lib)
+        ADD_HANDLE(ProcessFinalizer, d->lib)
+        ADD_HANDLE(HandleCreator, d->lib)
         return true;
     }
 

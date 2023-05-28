@@ -9,27 +9,30 @@
 #include "ParameterTypes.h"
 
 #define OV_API_DEF(name, type) using name = type;
-#define OV_API_CALL(name) (name)Api::getInstance()->getHandle(#name)
-#define OV_API_SET(name, handle) Api::getInstance()->addHandle(#name, handle)
+#define OV_API_CALL(name) (name) this->m_api->getHandle(#name)
+#define OV_API_SET(name, handle) this->m_api->addHandle(#name, handle)
+#define OV_API_CHECK(ret) if(!this->m_api->getInitializationState()) return ret
 
 namespace OpenVpi {
 
-    OV_API_DEF(Initializer, bool (*)())
-    OV_API_DEF(Terminator, void (*)())
-    OV_API_DEF(WindowOpener, void (*)())
-    OV_API_DEF(WindowCloser, void (*)())
-    OV_API_DEF(PlaybackProcessor, bool (*)(const PlaybackParameters &parameters, float *const *const * outputs))
-    OV_API_DEF(StateChangedCallback, void (*)(uint64_t size, const uint8_t *data))
-    OV_API_DEF(StateWillSaveCallback, bool (*)(uint64_t &size, const uint8_t *&data))
-    OV_API_DEF(StateSavedAsyncCallback, void (*)(const uint8_t * dataToFree))
-    OV_API_DEF(CallbacksBinder, void (*)(const Callbacks &callbacks))
-    OV_API_DEF(ProcessInitializer, bool(*)(int32_t totalNumOutputChannels, int32_t maxBufferSize, double sampleRate))
+    OV_API_DEF(Initializer, bool (*)(void *h))
+    OV_API_DEF(Terminator, void (*)(void *h))
+    OV_API_DEF(WindowOpener, void (*)(void *h))
+    OV_API_DEF(WindowCloser, void (*)(void *h))
+    OV_API_DEF(PlaybackProcessor, bool (*)(void *h, const PlaybackParameters &parameters, float *const *const * outputs))
+    OV_API_DEF(StateChangedCallback, void (*)(void *h, uint64_t size, const uint8_t *data))
+    OV_API_DEF(StateWillSaveCallback, bool (*)(void *h, uint64_t &size, const uint8_t *&data))
+    OV_API_DEF(StateSavedAsyncCallback, void (*)(void *h, const uint8_t * dataToFree))
+    OV_API_DEF(CallbacksBinder, void (*)(void *h, void *editorHelper, const Callbacks &callbacks))
+    OV_API_DEF(ProcessInitializer, bool(*)(void *h, int32_t totalNumOutputChannels, int32_t maxBufferSize, double sampleRate))
+    OV_API_DEF(ProcessFinalizer, void(*)(void *h))
+    OV_API_DEF(HandleCreator, void *(*)())
 
     class Api {
     public:
 
-        static Api* getInstance();
-        static void destroyInstance();
+        Api();
+        ~Api();
 
         void addHandle(const std::string& name, void* handle);
 
@@ -40,9 +43,6 @@ namespace OpenVpi {
         bool getInitializationState() const;
 
     protected:
-        static Api* instance;
-        Api();
-        ~Api();
         std::map<std::string, void*>* apiHandlesDict;
         bool initializationState;
     };

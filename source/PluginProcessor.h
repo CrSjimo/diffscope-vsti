@@ -1,6 +1,8 @@
 #pragma once
 
 #include <juce_audio_processors/juce_audio_processors.h>
+#include "EditorHelper.h"
+#include "bridge.h"
 
 //==============================================================================
 class AudioPluginAudioProcessor  : public juce::AudioProcessor
@@ -45,4 +47,7 @@ public:
 private:
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioPluginAudioProcessor)
+    friend class AudioPluginAudioProcessorEditor;
+    std::unique_ptr<OpenVpi::EditorHelper> m_editorHelper;
+    std::unique_ptr<OpenVpi::Bridge> m_bridge;
 };

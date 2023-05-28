@@ -4,12 +4,9 @@
 
 #include "EditorHelper.h"
 
+#include "PluginEditor.h"
+
 namespace OpenVpi {
-
-    static AudioPluginAudioProcessorEditor *m_editor = nullptr;
-    static std::string lazyStatus = "Not Connected";
-    static std::string lazyError;
-
 
     void EditorHelper::setEditor(AudioPluginAudioProcessorEditor *editor) {
         m_editor = editor;
@@ -36,11 +33,11 @@ namespace OpenVpi {
 #endif
     }
 
-    juce::String EditorHelper::status() {
+    std::string EditorHelper::status() {
         return lazyStatus;
     }
 
-    juce::String EditorHelper::error() {
+    std::string EditorHelper::error() {
         return lazyError;
     }
 

@@ -5,8 +5,6 @@
 #include "libraryloader.h"
 #include "EditorHelper.h"
 
-using namespace OpenVpi;
-
 //==============================================================================
 AudioPluginAudioProcessor::AudioPluginAudioProcessor()
      : AudioProcessor (BusesProperties()
@@ -31,9 +29,11 @@ AudioPluginAudioProcessor::AudioPluginAudioProcessor()
                        .withOutput ("Output 15", juce::AudioChannelSet::stereo(), true)
                        .withOutput ("Output 16", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ),
+     m_editorHelper(new OpenVpi::EditorHelper),
+     m_bridge(new OpenVpi::Bridge(m_editorHelper.get()))
 {
-    OpenVpi::initialize();
+    m_bridge->initialize();
     std::cerr << "Initialized: Processor" << std::endl;
 }
 
@@ -41,9 +41,7 @@ AudioPluginAudioProcessor::~AudioPluginAudioProcessor()
 {
     //TODO terminate
     std::cerr << "Will finalize: Processor" << std::endl;
-    OpenVpi::terminate();
-    OpenVpi::Api::destroyInstance();
-    OpenVpi::LibraryLoader::destroyInstance();
+    m_bridge->terminate();
     std::cerr << "Finalized: Processor" << std::endl;
 }
 
@@ -118,7 +116,7 @@ void AudioPluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
     juce::ignoreUnused (sampleRate, samplesPerBlock);
-    setupProcess(getTotalNumOutputChannels(), sampleRate, samplesPerBlock);
+    m_bridge->setupProcess(getTotalNumOutputChannels(), sampleRate, samplesPerBlock);
     std::cerr << "Processor: prepare to play" << std::endl;
 }
 
@@ -185,7 +183,7 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
-    if(!processPlayback(buffer, timeInSamples, totalNumOutputChannels, isRealtime, isPlaying)) {
+    if(!m_bridge->processPlayback(buffer, timeInSamples, totalNumOutputChannels, isRealtime, isPlaying)) {
         buffer.clear();
     }
 }
@@ -209,16 +207,16 @@ void AudioPluginAudioProcessor::getStateInformation (juce::MemoryBlock& destData
     // as intermediaries to make it easy to save and load complex data.
     uint64_t size = 0;
     const uint8_t *data = nullptr;
-    saveData(size, data);
+    m_bridge->saveData(size, data);
     if(size != 0) destData.replaceAll(data, size);
-    freeDataBuffer(data);
+    m_bridge->freeDataBuffer(data);
 }
 
 void AudioPluginAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
-    loadData(sizeInBytes, static_cast<const uint8_t *>(data));
+    m_bridge->loadData(sizeInBytes, static_cast<const uint8_t *>(data));
 }
 
 //==============================================================================

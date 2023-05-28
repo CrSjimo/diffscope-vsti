@@ -14,9 +14,9 @@ namespace OpenVpi {
     };
 
     struct Callbacks {
-        void (*setDirty)();
-        void (*setError)(const char *error);
-        void (*setStatus)(const char *status);
+        void (*setDirty)(void *editorHelper);
+        void (*setError)(void *editorHelper, const char *error);
+        void (*setStatus)(void *editorHelper, const char *status);
     };
 }
 #endif //AUDIO_PLUGIN_EXAMPLE_PARAMETERTYPES_H

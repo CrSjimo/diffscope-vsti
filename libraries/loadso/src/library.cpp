@@ -92,7 +92,7 @@ namespace LoadSO {
     }
 
     Library::~Library() {
-        close();
+//        close(); //not to close after deleted
         delete _impl;
     }
 

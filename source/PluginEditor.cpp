@@ -15,7 +15,7 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     mainButton.setColour(juce::TextButton::buttonColourId, juce::Colour(0x15, 0x4c, 0x39));
     mainButton.setColour(juce::TextButton::buttonOnColourId, juce::Colour(0x0f, 0x69, 0x4b));
     mainButton.addListener(this);
-    mainButton.setEnabled(OpenVpi::Api::getInstance()->getInitializationState());
+    mainButton.setEnabled(processorRef.m_bridge->m_api->getInitializationState());
     errorLabel.setColour(juce::Label::textColourId, juce::Colours::red);
     errorLabel.setJustificationType(juce::Justification::bottom);
     setStatus("Not Connected");
@@ -27,7 +27,7 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     addAndMakeVisible(versionLabel);
     addAndMakeVisible(mainButton);
     setSize (400, 200);
-    OpenVpi::EditorHelper::setEditor(this);
+    processorRef.m_editorHelper->setEditor(this);
     std::cerr << "Initialized: Editor" << std::endl;
 }
 
@@ -43,7 +43,7 @@ void AudioPluginAudioProcessorEditor::setError(const juce::String &error) {
 
 AudioPluginAudioProcessorEditor::~AudioPluginAudioProcessorEditor()
 {
-    OpenVpi::EditorHelper::setEditor(nullptr);
+    processorRef.m_editorHelper->setEditor(nullptr);
     std::cerr << "Finalized: Editor" << std::endl;
 }
 
@@ -67,5 +67,5 @@ void AudioPluginAudioProcessorEditor::resized()
 
 void AudioPluginAudioProcessorEditor::buttonClicked(juce::Button *btn) {
     setError("");
-    OpenVpi::showEditorWindow();
+    processorRef.m_bridge->showEditorWindow();
 }

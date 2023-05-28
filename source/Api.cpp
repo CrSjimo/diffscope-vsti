@@ -11,21 +11,6 @@ namespace OpenVpi {
         delete this->apiHandlesDict;
     }
 
-    Api* Api::instance = nullptr;
-
-    Api *Api::getInstance() {
-        if(instance) {
-            return instance;
-        } else {
-            return instance = new Api;
-        }
-    }
-
-    void Api::destroyInstance() {
-        delete instance;
-        instance = nullptr;
-    }
-
     void Api::addHandle(const std::string& name, void* handle) {
         this->apiHandlesDict->insert(map<string, void*>::value_type(name, handle));
     }
