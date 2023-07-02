@@ -28,6 +28,7 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     addAndMakeVisible(mainButton);
     setSize (400, 200);
     processorRef.m_editorHelper->setEditor(this);
+    processorRef.m_bridge->showEditorWindow();
     std::cerr << "Initialized: Editor" << std::endl;
 }
 
@@ -44,6 +45,7 @@ void AudioPluginAudioProcessorEditor::setError(const juce::String &error) {
 AudioPluginAudioProcessorEditor::~AudioPluginAudioProcessorEditor()
 {
     processorRef.m_editorHelper->setEditor(nullptr);
+    processorRef.m_bridge->hideEditorWindow();
     std::cerr << "Finalized: Editor" << std::endl;
 }
 
