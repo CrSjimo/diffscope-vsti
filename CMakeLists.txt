@@ -32,6 +32,12 @@ else()
     add_subdirectory(${JUCE_DIR} ${CMAKE_BINARY_DIR}/JUCE)
 endif()
 
+if(NOT VSTGLOBAL_DIR)
+    error(Cannot find vstglobal.)
+else()
+    add_subdirectory(${VSTGLOBAL_DIR} ${CMAKE_BINARY_DIR}/vstglobal)
+endif()
+
 add_compile_definitions(JUCE_DISPLAY_SPLASH_SCREEN=0)
 
 add_subdirectory(libraries)
@@ -82,6 +88,8 @@ ck_add_files(_src
     PATTERNS *.h *.cpp
     DIRS source
 )
+
+target_link_libraries(DiffScopeVSTi PRIVATE vstglobal)
 
 set_target_properties(DiffScopeVSTi PROPERTIES CXX_STANDARD 20)
 

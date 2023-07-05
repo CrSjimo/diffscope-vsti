@@ -16,21 +16,19 @@ namespace OpenVpi {
         }
     }
 
-    void EditorHelper::setStatus(const std::string &status) {
+    void EditorHelper::setStatus(const char *status) {
         if(m_editor) {
             m_editor->setStatus(status);
         }
         lazyStatus = status;
     }
 
-    void EditorHelper::setError(const std::string &error) {
+    void EditorHelper::setError(const char *error) {
         if(m_editor) {
             m_editor->setError(error);
         }
         lazyError = error;
-#ifdef DEBUG
         std::cerr << error << std::endl;
-#endif
     }
 
     std::string EditorHelper::status() {

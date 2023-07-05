@@ -94,19 +94,8 @@ namespace OpenVpi {
             return false;
         }
         System::SetLibraryPath(prev);
-        ADD_HANDLE(Initializer, d->lib)
-        ADD_HANDLE(Terminator, d->lib)
-        ADD_HANDLE(WindowOpener, d->lib)
-        ADD_HANDLE(WindowCloser, d->lib)
-        ADD_HANDLE(PlaybackProcessor, d->lib)
-        ADD_HANDLE(StateChangedCallback, d->lib)
-        ADD_HANDLE(StateWillSaveCallback, d->lib)
-        ADD_HANDLE(StateSavedAsyncCallback, d->lib)
-        ADD_HANDLE(CallbacksBinder, d->lib)
-        ADD_HANDLE(ProcessInitializer, d->lib)
-        ADD_HANDLE(ProcessFinalizer, d->lib)
-        ADD_HANDLE(HandleCreator, d->lib)
-        ADD_HANDLE(HandleDeleter, d->lib)
+        ADD_HANDLE(CreateInstance, d->lib)
+        ADD_HANDLE(DeleteInstance, d->lib)
         return true;
     }
 

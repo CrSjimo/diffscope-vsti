@@ -167,7 +167,6 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     }
 
     juce::ScopedNoDenormals noDenormals;
-    auto totalNumOutputChannels = getTotalNumOutputChannels();
     // In case we have more outputs than inputs, this code clears any output
     // channels that didn't contain input data, (because these aren't
     // guaranteed to be empty - they may contain garbage).
@@ -183,7 +182,7 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
-    if(!m_bridge->processPlayback(buffer, timeInSamples, totalNumOutputChannels, isRealtime, isPlaying)) {
+    if(!m_bridge->processPlayback(buffer, timeInSamples, isRealtime, isPlaying)) {
         buffer.clear();
     }
 }
@@ -205,8 +204,8 @@ void AudioPluginAudioProcessor::getStateInformation (juce::MemoryBlock& destData
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
-    uint64_t size = 0;
-    const uint8_t *data = nullptr;
+    int size = 0;
+    const char *data = nullptr;
     m_bridge->saveData(size, data);
     if(size != 0) destData.replaceAll(data, size);
     m_bridge->freeDataBuffer(data);
@@ -216,7 +215,7 @@ void AudioPluginAudioProcessor::setStateInformation (const void* data, int sizeI
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
-    m_bridge->loadData(sizeInBytes, static_cast<const uint8_t *>(data));
+    m_bridge->loadData(sizeInBytes, (char *)data);
 }
 
 //==============================================================================
