@@ -40,6 +40,10 @@ namespace OpenVpi {
     }
 
     void EditorHelper::setDirty() {
-        m_editor->processor.updateHostDisplay();
+        m_processor->updateHostDisplay();
+    }
+
+    EditorHelper::EditorHelper(AudioPluginAudioProcessor *processor): m_processor(processor) {
+
     }
 } // OpenVpi

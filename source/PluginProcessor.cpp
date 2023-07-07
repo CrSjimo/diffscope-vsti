@@ -30,7 +30,7 @@ AudioPluginAudioProcessor::AudioPluginAudioProcessor()
                        .withOutput ("Output 16", juce::AudioChannelSet::stereo(), true)
                      #endif
                        ),
-     m_editorHelper(new OpenVpi::EditorHelper),
+     m_editorHelper(new OpenVpi::EditorHelper(this)),
      m_bridge(new OpenVpi::Bridge(m_editorHelper.get()))
 {
     m_bridge->initialize();

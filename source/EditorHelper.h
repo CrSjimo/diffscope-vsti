@@ -10,6 +10,7 @@
 #include <IEditorCallbacks.h>
 
 class AudioPluginAudioProcessorEditor;
+class AudioPluginAudioProcessor;
 
 namespace OpenVpi {
 
@@ -17,9 +18,11 @@ namespace OpenVpi {
         friend class ::AudioPluginAudioProcessorEditor;
         void setEditor(AudioPluginAudioProcessorEditor *editor);
         AudioPluginAudioProcessorEditor *m_editor = nullptr;
+        AudioPluginAudioProcessor *m_processor;
         std::string lazyStatus = "Not Connected";
         std::string lazyError;
     public:
+        explicit EditorHelper(AudioPluginAudioProcessor *processor);
         void setStatus(const char *status) override;
         void setError(const char *error) override;
         void setDirty() override;
