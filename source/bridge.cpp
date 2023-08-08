@@ -10,7 +10,6 @@ namespace OpenVpi {
 
     bool
     Bridge::processPlayback(juce::AudioBuffer<float> &buffer, int64_t timeInSamples, bool isRealtime, bool isPlaying) {
-        if(!myOutputs) return false;
         OV_API_CHECK(false);
         if(!m_handle->processPlayback(isRealtime, isPlaying, timeInSamples, buffer.getNumSamples(), buffer.getNumChannels(), buffer.getArrayOfWritePointers())) {
             return false;
