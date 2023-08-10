@@ -125,6 +125,7 @@ void AudioPluginAudioProcessor::releaseResources()
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
     std::cerr << "Processor: stop playing" << std::endl;
+    m_bridge->finalizeProcess();
 }
 
 bool AudioPluginAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
